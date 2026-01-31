@@ -1,239 +1,232 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Discover Aviation & Aeronautical Engineering</title>
-  <meta name="description" content="Learn aeronautical engineering and general aviation aircraft like Cessna and Piper.">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discover Aviation & Aeronautical Engineering</title>
+<meta name="description" content="Learn aeronautical engineering and general aviation aircraft like Cessna and Piper.">
 
-  <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #000000;
-      --border: #000000;
-      --card-bg: #f2f2f2;
-    }
-    [data-theme="dark"] {
-      --bg: #121212;
-      --fg: #ffffff;
-      --border: #ffffff;
-      --card-bg: #1e1e1e;
-    }
+<style>
+:root {
+  --bg: #ffffff;
+  --fg: #000000;
+  --border: #000000;
+  --card-bg: #f2f2f2;
+}
+[data-theme="dark"] {
+  --bg: #121212;
+  --fg: #ffffff;
+  --border: #ffffff;
+  --card-bg: #1e1e1e;
+}
 
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--fg);
-      line-height: 1.6;
-      transition: background 0.3s, color 0.3s;
-      min-height: 100vh;
-      position: relative;
-      overflow-x: hidden;
-    }
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+  line-height: 1.6;
+  transition: background 0.3s, color 0.3s;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+}
 
-    header, footer { border-bottom: 2px solid var(--border); padding: 1rem; }
-    footer { border-top: 2px solid var(--border); border-bottom: none; text-align: center; }
-    nav { display: flex; gap: 1rem; flex-wrap: wrap; }
-    nav a { font-weight: 600; }
-    a { color: var(--fg); text-decoration: underline; }
-    a:focus, button:focus, input:focus, textarea:focus { outline: 3px solid var(--fg); outline-offset: 2px; }
-    main { max-width: 1100px; margin: auto; padding: 2rem 1rem; }
-    section { margin-bottom: 6rem; }
-    h1,h2,h3 { line-height: 1.2; }
+/* Background layers */
+.bg-layer {
+  position: fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-size: cover;
+  background-position: center;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+}
 
-    .hero { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-    .hero img { width: 100%; height: auto; border: 2px solid var(--border); }
+/* Theme circles */
+.theme-circles {
+  position: fixed;
+  right: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  z-index: 1000;
+}
+.theme-circles button {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--border);
+  background: var(--bg);
+  cursor: pointer;
+  transition: transform 0.2s, background 0.3s;
+}
+.theme-circles button:hover { transform: scale(1.2); }
+.theme-circles button[data-theme="dark"] { background: #121212; }
+.theme-circles button[data-theme="bright"] { background: #ffffff; }
+.theme-circles button[data-theme="auto"] { background: #888888; }
 
-    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-    .card { border: 2px solid var(--border); padding: 1rem; background: var(--card-bg); }
+/* Header & Footer */
+header, footer { border-bottom: 2px solid var(--border); padding: 1rem; }
+footer { border-top: 2px solid var(--border); border-bottom: none; text-align: center; }
+nav { display: flex; gap: 1rem; flex-wrap: wrap; }
+nav a { font-weight: 600; }
+a { color: var(--fg); text-decoration: underline; }
+a:focus, button:focus, input:focus, textarea:focus { outline: 3px solid var(--fg); outline-offset: 2px; }
 
-    figure { margin: 0; border: 2px solid var(--border); background: var(--card-bg); }
-    figure img { width: 100%; display: block; height: auto; }
-    figcaption { padding: 0.5rem; font-weight: 600; }
+main { max-width: 1100px; margin: auto; padding: 2rem 1rem; }
+section { margin-bottom: 6rem; }
+h1,h2,h3 { line-height: 1.2; }
 
-    form { max-width: 600px; }
-    label { display: block; margin-top: 1rem; font-weight: 600; }
-    input, textarea, button { width: 100%; padding: 0.6rem; margin-top: 0.3rem; font-size: 1rem; border: 2px solid var(--border); background: var(--bg); color: var(--fg); }
-    button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
+.hero { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
+.hero img { width: 100%; height: auto; border: 2px solid var(--border); }
 
-    @media (min-width: 700px) { .hero { grid-template-columns: 1fr 1fr; align-items: center; } }
+.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
+.card { border: 2px solid var(--border); padding: 1rem; background: var(--card-bg); }
 
-    /* Theme circles */
-    .theme-circles {
-      position: fixed;
-      right: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      z-index: 1000;
-    }
-    .theme-circles button {
-      width: 20px;
-      height: 20px;
-      border-radius: 50%;
-      border: 2px solid var(--border);
-      background: var(--bg);
-      cursor: pointer;
-      transition: transform 0.2s, background 0.3s;
-    }
-    .theme-circles button:hover { transform: scale(1.2); }
-    .theme-circles button[data-theme="dark"] { background: #121212; }
-    .theme-circles button[data-theme="bright"] { background: #ffffff; }
-    .theme-circles button[data-theme="auto"] { background: #888888; }
+figure { margin: 0; border: 2px solid var(--border); background: var(--card-bg); }
+figure img { width: 100%; display: block; height: auto; }
+figcaption { padding: 0.5rem; font-weight: 600; }
 
-    /* Background container for smooth fade */
-    .bg-layer {
-      position: fixed;
-      top:0;
-      left:0;
-      width:100%;
-      height:100%;
-      background-size: cover;
-      background-position: center;
-      z-index: -1;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
-      pointer-events: none;
-    }
+form { max-width: 600px; }
+label { display: block; margin-top: 1rem; font-weight: 600; }
+input, textarea, button { width: 100%; padding: 0.6rem; margin-top: 0.3rem; font-size: 1rem; border: 2px solid var(--border); background: var(--bg); color: var(--fg); }
+button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 
-    /* Text sections */
-    .aircraft-section {
-      min-height: 1200px; /* space for scrolling */
-      padding-top: 50px;
-    }
-    .aircraft-section h2 { margin-bottom: 1rem; }
-    .aircraft-section p { margin-bottom: 1rem; }
-  </style>
+@media (min-width: 700px) { .hero { grid-template-columns: 1fr 1fr; align-items: center; } }
+
+.aircraft-section { min-height: 1200px; padding-top: 50px; }
+.aircraft-section h2 { margin-bottom: 1rem; }
+.aircraft-section p { margin-bottom: 1rem; }
+
+</style>
 </head>
 <body data-theme="light">
 
-  <div class="theme-circles">
-    <button data-theme="bright" title="Bright Theme"></button>
-    <button data-theme="dark" title="Dark Theme"></button>
-    <button data-theme="auto" title="Auto Theme"></button>
+<div class="theme-circles">
+  <button data-theme="bright" title="Bright Theme"></button>
+  <button data-theme="dark" title="Dark Theme"></button>
+  <button data-theme="auto" title="Auto Theme"></button>
+</div>
+
+<!-- Background layers -->
+<div class="bg-layer" id="bg-cessna172" style="background-image: url('images/cessna172.jpg'); opacity:1;"></div>
+<div class="bg-layer" id="bg-pa28" style="background-image: url('images/pa28.jpg'); opacity:0;"></div>
+<div class="bg-layer" id="bg-cessna152" style="background-image: url('images/c152.jpg'); opacity:0;"></div>
+
+<header>
+  <nav aria-label="Main navigation">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#aircraft">Aircraft</a>
+    <a href="#learn">Learn</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main id="home">
+<section class="hero">
+  <div>
+    <h1>Discover Aeronautical Engineering & Aviation</h1>
+    <p>Learn how aircraft fly, how they are engineered, and explore general aviation aircraft like Cessna and Piper. Scroll down to see smooth background fades per aircraft.</p>
   </div>
+  <img src="images/cessna172.jpg" alt="Cessna 172 on airfield">
+</section>
 
-  <div class="bg-layer" id="bg-cessna172" style="background-image: url('images/cessna172.jpg'); opacity:1;"></div>
-  <div class="bg-layer" id="bg-piper" style="background-image: url('images/piper_pa28.jpg');"></div>
-  <div class="bg-layer" id="bg-cessna152" style="background-image: url('images/cessna152.jpg');"></div>
+<section id="about" class="aircraft-section">
+<h2>What is Aeronautical Engineering?</h2>
+<p>Aeronautical engineering is the art and science of designing, building, and maintaining aircraft. It covers aerodynamics, propulsion, structures, avionics, and systems integration.</p>
+<div class="grid">
+  <div class="card"><h3>Aerodynamics</h3><p>Lift, drag, thrust, airflow around wings, fuselage, and control surfaces. Understanding airflow is crucial for safe, efficient flight.</p></div>
+  <div class="card"><h3>Structures</h3><p>Lightweight and strong airframes are designed to endure stress from turbulence, maneuvers, and takeoff/landing cycles.</p></div>
+  <div class="card"><h3>Propulsion</h3><p>Piston engines, turboprops, and jets provide thrust to move the aircraft. Knowledge of engines and fuel systems is key.</p></div>
+</div>
+</section>
 
-  <header>
-    <nav aria-label="Main navigation">
-      <a href="#home">Home</a>
-      <a href="#about">About</a>
-      <a href="#aircraft">Aircraft</a>
-      <a href="#learn">Learn</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<section id="cessna172" class="aircraft-section">
+<h2>Cessna 172 Skyhawk</h2>
+<p>The Cessna 172 is one of the most popular general aviation aircraft worldwide. It is commonly used for flight training, personal transport, and light commercial duties.</p>
+<p>Powered by a single piston engine, it offers reliable performance and forgiving flight characteristics, making it ideal for new pilots.</p>
+<p>Its high-wing design provides excellent visibility, stability, and short takeoff and landing capabilities.</p>
+</section>
 
-  <main id="home">
-    <section class="hero">
-      <div>
-        <h1>Discover Aeronautical Engineering & Aviation</h1>
-        <p>Learn how aircraft fly, how they are engineered, and explore general aviation aircraft like Cessna and Piper. Scroll down to experience different aircraft with smooth transitions.</p>
-      </div>
-      <img src="images/cessna172.jpg" alt="Cessna 172 on airfield">
-    </section>
+<section id="pa28" class="aircraft-section">
+<h2>Piper PA-28 Archer</h2>
+<p>The Piper PA-28 Archer is a low-wing aircraft designed for training and personal use. Known for its smooth handling and robust build.</p>
+<p>It has a more powerful engine than the Cessna 172, offering faster cruise speeds and longer range, while maintaining ease of control.</p>
+<p>Its avionics suite is advanced yet pilot-friendly, making it suitable for instrument training as well.</p>
+</section>
 
-    <section id="about" class="aircraft-section">
-      <h2>What is Aeronautical Engineering?</h2>
-      <p>Aeronautical engineering is the art and science of designing, building, and maintaining aircraft. It covers aerodynamics, propulsion, structures, avionics, and systems integration.</p>
-      <div class="grid">
-        <div class="card"><h3>Aerodynamics</h3><p>Lift, drag, thrust, and airflow around wings, fuselage, and control surfaces. Understanding airflow is crucial for safe, efficient flight.</p></div>
-        <div class="card"><h3>Structures</h3><p>Lightweight and strong airframes are designed to endure stress from turbulence, maneuvers, and takeoff/landing cycles.</p></div>
-        <div class="card"><h3>Propulsion</h3><p>Piston engines, turboprops, and jets provide thrust to move the aircraft. Knowledge of engines and fuel systems is key.</p></div>
-      </div>
-    </section>
+<section id="cessna152" class="aircraft-section">
+<h2>Cessna 152</h2>
+<p>The Cessna 152 is a classic two-seater trainer aircraft. Lightweight, efficient, and economical, it is widely used in flight schools worldwide.</p>
+<p>It provides excellent control response and predictable handling, making it ideal for student pilots to build confidence.</p>
+<p>Its simplicity and reliability have kept it relevant for decades, offering an enduring platform for learning the fundamentals of flight.</p>
+</section>
 
-    <!-- Cessna 172 Section -->
-    <section class="aircraft-section" id="cessna172">
-      <h2>Cessna 172 Skyhawk</h2>
-      <p>The Cessna 172 is one of the most popular general aviation aircraft worldwide. It is commonly used for flight training, personal transport, and light commercial duties.</p>
-      <p>Powered by a single piston engine, it offers reliable performance and forgiving flight characteristics, making it ideal for new pilots.</p>
-      <p>Its high-wing design provides excellent visibility, stability, and short takeoff and landing capabilities.</p>
-      <p>Scroll down to see the Piper PA-28 fade in as you leave the Cessna 172 section.</p>
-    </section>
+<section id="contact" class="aircraft-section">
+<h2>Contact</h2>
+<p>If you want guidance or more info, reach out below:</p>
+<form>
+  <label for="name">Name</label>
+  <input id="name" type="text" required>
+  <label for="email">Email</label>
+  <input id="email" type="email" required>
+  <label for="message">Message</label>
+  <textarea id="message" rows="5" required></textarea>
+  <button type="submit">Send Message</button>
+</form>
+</section>
+</main>
 
-    <!-- Piper PA-28 Section -->
-    <section class="aircraft-section" id="pa28">
-      <h2>Piper PA-28 Archer</h2>
-      <p>The Piper PA-28 Archer is a low-wing aircraft designed for training and personal use. Known for its smooth handling and robust build.</p>
-      <p>It has a more powerful engine than the Cessna 172, offering faster cruise speeds and longer range, while maintaining ease of control.</p>
-      <p>Its avionics suite is advanced yet pilot-friendly, making it suitable for instrument training as well.</p>
-      <p>As you scroll further, the Cessna 152 section will fade in smoothly.</p>
-    </section>
+<footer>
+<p>© 2026 Discover Aviation — Educational Use</p>
+</footer>
 
-    <!-- Cessna 152 Section -->
-    <section class="aircraft-section" id="cessna152">
-      <h2>Cessna 152</h2>
-      <p>The Cessna 152 is a classic two-seater trainer aircraft. Lightweight, efficient, and economical, it is widely used in flight schools worldwide.</p>
-      <p>It provides excellent control response and predictable handling, making it ideal for student pilots to build confidence.</p>
-      <p>Its simplicity and reliability have kept it relevant for decades, offering an enduring platform for learning the fundamentals of flight.</p>
-      <p>Keep scrolling and enjoy the smooth transitions between aircraft backgrounds!</p>
-    </section>
+<script>
+const buttons = document.querySelectorAll('.theme-circles button');
+function applyTheme(mode){
+  if(mode==='auto'){
+    const hour = new Date().getUTCHours();
+    document.body.dataset.theme = hour>=17?'dark':'light';
+  } else if(mode==='bright') document.body.dataset.theme='light';
+  else document.body.dataset.theme='dark';
+}
+buttons.forEach(btn => btn.addEventListener('click', ()=>{ 
+  const mode = btn.dataset.theme;
+  localStorage.setItem('themeMode', mode);
+  applyTheme(mode);
+}));
+applyTheme(localStorage.getItem('themeMode') || 'auto');
 
-    <section id="contact" class="aircraft-section">
-      <h2>Contact</h2>
-      <p>If you want guidance or more info, reach out below:</p>
-      <form>
-        <label for="name">Name</label>
-        <input id="name" type="text" required>
+// Smooth fade background
+const layers = [
+  {id:'bg-cessna172', section:'cessna172'},
+  {id:'bg-pa28', section:'piper'},
+  {id:'bg-cessna152', section:'cessna152'}
+];
 
-        <label for="email">Email</label>
-        <input id="email" type="email" required>
-
-        <label for="message">Message</label>
-        <textarea id="message" rows="5" required></textarea>
-
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2026 Discover Aviation — Educational Use</p>
-  </footer>
-
-  <script>
-    // Theme switching
-    const buttons = document.querySelectorAll('.theme-circles button');
-    function applyTheme(mode) {
-      if(mode === 'auto') {
-        const hour = new Date().getUTCHours();
-        document.body.dataset.theme = hour >= 17 ? 'dark' : 'light';
-      } else if(mode === 'bright') document.body.dataset.theme = 'light';
-      else document.body.dataset.theme = 'dark';
-    }
-    buttons.forEach(btn => btn.addEventListener('click', () => {
-      const mode = btn.dataset.theme;
-      localStorage.setItem('themeMode', mode);
-      applyTheme(mode);
-    }));
-    applyTheme(localStorage.getItem('themeMode') || 'auto');
-
-    // Smooth fade between aircraft
-    const sections = [
-      {id:'bg-cessna172', start:0, end: document.getElementById('cessna172').offsetTop + 800},
-      {id:'bg-piper', start: document.getElementById('pa28').offsetTop - 300, end: document.getElementById('piper').offsetTop + 900},
-      {id:'bg-cessna152', start: document.getElementById('cessna152').offsetTop - 300, end: document.getElementById('cessna152').offsetTop + 900}
-    ];
-
-    window.addEventListener('scroll', () => {
-      const y = window.scrollY + window.innerHeight/2;
-      sections.forEach(sec => {
-        const el = document.getElementById(sec.id);
-        if(y >= sec.start && y <= sec.end) {
-          el.style.opacity = 1;
-        } else {
-          el.style.opacity = 0;
-        }
-      });
-    });
-  </script>
+window.addEventListener('scroll', ()=>{
+  const y = window.scrollY + window.innerHeight/3;
+  layers.forEach(l=>{
+    const sec = document.getElementById(l.section);
+    const el = document.getElementById(l.id);
+    const top = sec.offsetTop;
+    const bottom = top + sec.offsetHeight;
+    if(y>=top && y<=bottom){
+      // fade in proportional to position within section
+      const progress = (y-top)/(bottom-top);
+      el.style.opacity = 0.2 + 0.3 * Math.sin(progress*Math.PI); // smooth fade
+    } else el.style.opacity = 0;
+  });
+});
+</script>
 
 </body>
 </html>
