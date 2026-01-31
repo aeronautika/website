@@ -117,7 +117,7 @@ button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 
 <!-- Background layers -->
 <div class="bg-layer" id="bg-cessna172" style="background-image: url('images/cessna172.jpg'); opacity:1;"></div>
-<div class="bg-layer" id="bg-pa28" style="background-image: url('images/pa28.jpg'); opacity:0;"></div>
+<div class="bg-layer" id="bg-piper" style="background-image: url('images/pa28.jpg'); opacity:0;"></div>
 <div class="bg-layer" id="bg-cessna152" style="background-image: url('images/cessna152.jpg'); opacity:0;"></div>
 
 <header>
@@ -156,7 +156,7 @@ button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 <p>Its high-wing design provides excellent visibility, stability, and short takeoff and landing capabilities.</p>
 </section>
 
-<section id="pa28" class="aircraft-section">
+<section id="piper" class="aircraft-section">
 <h2>Piper PA-28 Archer</h2>
 <p>The Piper PA-28 Archer is a low-wing aircraft designed for training and personal use. Known for its smooth handling and robust build.</p>
 <p>It has a more powerful engine than the Cessna 172, offering faster cruise speeds and longer range, while maintaining ease of control.</p>
@@ -190,9 +190,26 @@ button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 </footer>
 
 <script>
+// Theme switching
+const buttons = document.querySelectorAll('.theme-circles button');
+function applyTheme(mode){
+  if(mode==='auto'){
+    const hour = new Date().getUTCHours();
+    document.body.dataset.theme = hour>=17?'dark':'light';
+  } else if(mode==='bright') document.body.dataset.theme='light';
+  else document.body.dataset.theme='dark';
+}
+buttons.forEach(btn => btn.addEventListener('click', ()=>{ 
+  const mode = btn.dataset.theme;
+  localStorage.setItem('themeMode', mode);
+  applyTheme(mode);
+}));
+applyTheme(localStorage.getItem('themeMode') || 'auto');
+
+// Smooth fade background
 const layers = [
   {id:'bg-cessna172', section:'cessna172', el:null, sec:null},
-  {id:'bg-piper', section:'pa28', el:null, sec:null},
+  {id:'bg-piper', section:'piper', el:null, sec:null},
   {id:'bg-cessna152', section:'cessna152', el:null, sec:null}
 ];
 
@@ -209,7 +226,7 @@ window.addEventListener('load', ()=>{
       const bottom = top + l.sec.offsetHeight;
       if(y >= top && y <= bottom){
         const progress = (y - top)/(bottom - top);
-        l.el.style.opacity = 0.2 + 0.3 * Math.sin(progress*Math.PI); // fade 0.2 → 0.5 → 0.2
+        l.el.style.opacity = 0.2 + 0.3 * Math.sin(progress*Math.PI);
       } else {
         l.el.style.opacity = 0;
       }
@@ -220,7 +237,6 @@ window.addEventListener('load', ()=>{
   window.addEventListener('scroll', updateOpacity);
 });
 </script>
-
 
 </body>
 </html>
