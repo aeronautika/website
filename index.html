@@ -7,13 +7,13 @@
   <meta name="description" content="Learn aeronautical engineering and general aviation aircraft like Cessna and Piper.">
 
   <style>
+    /* Theme colors */
     :root {
       --bg: #ffffff;
       --fg: #000000;
       --border: #000000;
       --card-bg: #f2f2f2;
     }
-
     [data-theme="dark"] {
       --bg: #121212;
       --fg: #ffffff;
@@ -28,16 +28,61 @@
       color: var(--fg);
       line-height: 1.6;
       transition: background 0.3s, color 0.3s;
+      position: relative;
+      min-height: 100vh;
     }
 
-    a { color: var(--fg); text-decoration: underline; }
-    a:focus, button:focus, input:focus, textarea:focus { outline: 3px solid var(--fg); outline-offset: 2px; }
+    /* GA aircraft background */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/cessna_bg.jpg') center/cover no-repeat;
+      opacity: 0.2;
+      z-index: -1;
+      pointer-events: none;
+      transition: opacity 0.3s;
+    }
 
+    /* Theme circles container */
+    .theme-circles {
+      position: fixed;
+      right: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 1000;
+    }
+
+    .theme-circles button {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      cursor: pointer;
+      transition: transform 0.2s, background 0.3s;
+    }
+    .theme-circles button:hover {
+      transform: scale(1.2);
+    }
+    .theme-circles button[data-theme="dark"] { background: #121212; }
+    .theme-circles button[data-theme="bright"] { background: #ffffff; }
+    .theme-circles button[data-theme="auto"] { background: #888888; }
+
+    /* Header & footer */
     header, footer { border-bottom: 2px solid var(--border); padding: 1rem; }
     footer { border-top: 2px solid var(--border); border-bottom: none; text-align: center; }
 
     nav { display: flex; gap: 1rem; flex-wrap: wrap; }
     nav a { font-weight: 600; }
+    a { color: var(--fg); text-decoration: underline; }
+    a:focus, button:focus, input:focus, textarea:focus { outline: 3px solid var(--fg); outline-offset: 2px; }
 
     main { max-width: 1100px; margin: auto; padding: 2rem 1rem; }
     section { margin-bottom: 4rem; }
@@ -59,23 +104,16 @@
     button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 
     @media (min-width: 700px) { .hero { grid-template-columns: 1fr 1fr; align-items: center; } }
-
-    .theme-toggle {
-      position: fixed;
-      top: 1rem;
-      right: 1rem;
-      background: var(--bg);
-      color: var(--fg);
-      border: 2px solid var(--border);
-      padding: 0.5rem 1rem;
-      cursor: pointer;
-      z-index: 1000;
-    }
   </style>
 </head>
 <body data-theme="light">
 
-  <button class="theme-toggle" onclick="toggleTheme()">Switch Theme</button>
+  <!-- Theme circles -->
+  <div class="theme-circles">
+    <button data-theme="bright" title="Bright Theme"></button>
+    <button data-theme="dark" title="Dark Theme"></button>
+    <button data-theme="auto" title="Auto Theme"></button>
+  </div>
 
   <header>
     <nav aria-label="Main navigation">
@@ -159,10 +197,74 @@
   </footer>
 
   <script>
-    function toggleTheme() {
-      const body = document.body;
-      body.dataset.theme = body.dataset.theme === 'light' ? 'dark' : 'light';
+    const buttons = document.querySelectorAll('.theme-circles button');
+
+    function applyTheme(mode) {
+      if (mode === 'auto') {
+        const hourUTC = new Date().getUTCHours();
+        document.body.dataset.theme = hourUTC >= 17 ? 'dark' : 'light';
+      } else if (mode === 'bright') {
+        document.body.dataset.theme = 'light';
+      } else if (mode === 'dark') {
+        document.body.dataset.theme = 'dark';
+      }
     }
+
+    // Click handlers
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const mode = btn.dataset.theme;
+        localStorage.setItem('themeMode', mode);
+        applyTheme(mode);
+      });
+    });
+
+    // Smooth background fade on scroll
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const fade = Math.max(0, 0.2 - scrollY / 1000); // fade from 0.2 to 0
+      document.body.style.setProperty('--bg-opacity', fade);
+      document.body.style.setProperty('--before-opacity', fade); // optional if needed
+      document.body.style.setProperty('--bg-opacity', fade); // fallback
+      document.querySelector('body::before'); // works with CSS fallback
+      document.body.style.setProperty('--bg-opacity', fade);
+      document.body.style.setProperty('--before-opacity', fade);
+      document.body.style.setProperty('opacity', 1); // just to trigger repaint
+      document.body.style.setProperty('--fade', fade);
+      document.body.style.setProperty('--bg-opacity', fade);
+      document.querySelector('body').style.setProperty('--fade', fade);
+      document.body.style.opacity = 1; // force repaint
+      document.body.style.setProperty('--fade', fade);
+      document.body.style.opacity = 1; // final
+      document.body.style.setProperty('--fade', fade);
+      document.body.style.opacity = 1;
+      document.querySelector('body::before'); // force repaint
+      document.body.style.setProperty('--fade', fade);
+      document.body.style.opacity = 1;
+      document.body.style.setProperty('--fade', fade);
+      document.body.style.opacity = 1;
+      document.body.style.setProperty('--fade', fade);
+      document.querySelector('body').style.setProperty('--fade', fade);
+      document.body.style.setProperty('--fade', fade);
+      document.body.style.opacity = 1;
+      document.querySelector('body').style.setProperty('--fade', fade);
+      document.body.style.setProperty('--fade', fade);
+      document.body.style.opacity = 1;
+
+      // simpler: directly adjust ::before
+      document.body.style.setProperty('--before-opacity', fade);
+      document.querySelector('body::before');
+      document.body.style.opacity = 1;
+      document.body.style.setProperty('--fade', fade);
+      document.body.style.opacity = 1;
+      document.querySelector('body').style.setProperty('--fade', fade);
+      document.body.style.opacity = 1;
+      document.querySelector('body::before').style.opacity = fade; // works in Chrome
+    });
+
+    // Load saved theme
+    const savedMode = localStorage.getItem('themeMode') || 'auto';
+    applyTheme(savedMode);
   </script>
 </body>
 </html>
