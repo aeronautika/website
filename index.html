@@ -47,17 +47,6 @@ body {
   pointer-events: none;
 }
 
-/* Drifting plane easter egg */
-#drift-plane {
-  position: fixed;
-  width: 40px;
-  opacity: 0.1;
-  z-index: -1;
-  top: 10%;
-  left: -50px;
-  transition: transform 0.1s linear;
-}
-
 /* Theme circles */
 .theme-circles {
   position: fixed;
@@ -85,14 +74,14 @@ body {
 
 /* Header & Footer */
 header {
-  border-bottom: 2px solid var(--border);
+  background: rgba(0,0,0,0); /* transparent */
+  border-bottom: none;
   padding: 1rem;
   width: 100%;
   display: flex;
   justify-content: center;
   position: sticky;
   top:0;
-  background: var(--bg);
   z-index: 100;
 }
 nav { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 1200px; }
@@ -148,9 +137,6 @@ button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 <div class="bg-layer" id="bg-piper" style="background-image: url('images/pa28.jpg'); opacity:0;"></div>
 <div class="bg-layer" id="bg-cessna152" style="background-image: url('images/cessna152.jpg'); opacity:0;"></div>
 
-<!-- Drifting tiny plane -->
-<img src="images/cessna172.jpg" id="drift-plane" alt="drifting plane">
-
 <header>
   <nav aria-label="Main navigation">
     <a href="#home">Home</a>
@@ -180,6 +166,13 @@ button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 
 <section id="cessna172" class="aircraft-section">
 <h2>Cessna 172 Skyhawk</h2>
+
+<!-- Engineering vibe image -->
+<figure>
+  <img src="images/c408.jpg" alt="Cessna 172 assembly in hangar">
+  <figcaption>Assembling the Cessna 172 — behind the scenes of aeronautical engineering</figcaption>
+</figure>
+
 <p>The Cessna 172 Skyhawk is one of the most widely used general aviation aircraft in history, favored for training, personal flying, and light commercial duties. Powered by a reliable single piston engine, it offers forgiving flight characteristics that make it ideal for novice pilots. The high-wing design provides excellent visibility, stability, and short-field takeoff and landing capabilities, critical for small airfields.</p>
 <p>From an engineering perspective, the C172 demonstrates balance between weight, structural integrity, and aerodynamics. Its design emphasizes ease of maintenance and predictable handling. Pilots learn essential skills such as stall recovery, navigation, and flight planning in this aircraft, which has become a standard across flight schools worldwide. The C172 is not only a training platform but also a testament to decades of iterative improvements in general aviation design.</p>
 </section>
@@ -261,15 +254,6 @@ window.addEventListener('load', ()=>{
 
   updateOpacity();
   window.addEventListener('scroll', updateOpacity);
-
-  // Drift plane animation
-  const drift = document.getElementById('drift-plane');
-  let x = -50;
-  setInterval(()=>{
-    x += 0.3;
-    if(x > window.innerWidth+50) x = -50;
-    drift.style.transform = `translateX(${x}px)`;
-  },16);
 });
 </script>
 
