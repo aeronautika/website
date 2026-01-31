@@ -7,7 +7,6 @@
   <meta name="description" content="Learn aeronautical engineering and general aviation aircraft like Cessna and Piper.">
 
   <style>
-    /* Theme colors */
     :root {
       --bg: #ffffff;
       --fg: #000000;
@@ -28,11 +27,11 @@
       color: var(--fg);
       line-height: 1.6;
       transition: background 0.3s, color 0.3s;
-      position: relative;
       min-height: 100vh;
+      position: relative;
     }
 
-    /* GA aircraft background */
+    /* Background plane */
     body::before {
       content: "";
       position: fixed;
@@ -41,13 +40,13 @@
       width: 100%;
       height: 100%;
       background: url('images/cessna172.jpg') center/cover no-repeat;
-      opacity: 0.2;
+      opacity: 0.3;
       z-index: -1;
       pointer-events: none;
-      transition: opacity 0.3s;
+      transition: opacity 0.5s, background-image 0.5s;
     }
 
-    /* Theme circles container */
+    /* Theme circles */
     .theme-circles {
       position: fixed;
       right: 1rem;
@@ -58,7 +57,6 @@
       gap: 0.5rem;
       z-index: 1000;
     }
-
     .theme-circles button {
       width: 20px;
       height: 20px;
@@ -68,17 +66,14 @@
       cursor: pointer;
       transition: transform 0.2s, background 0.3s;
     }
-    .theme-circles button:hover {
-      transform: scale(1.2);
-    }
+    .theme-circles button:hover { transform: scale(1.2); }
     .theme-circles button[data-theme="dark"] { background: #121212; }
     .theme-circles button[data-theme="bright"] { background: #ffffff; }
     .theme-circles button[data-theme="auto"] { background: #888888; }
 
-    /* Header & footer */
+    /* Header & Footer */
     header, footer { border-bottom: 2px solid var(--border); padding: 1rem; }
     footer { border-top: 2px solid var(--border); border-bottom: none; text-align: center; }
-
     nav { display: flex; gap: 1rem; flex-wrap: wrap; }
     nav a { font-weight: 600; }
     a { color: var(--fg); text-decoration: underline; }
@@ -104,11 +99,13 @@
     button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 
     @media (min-width: 700px) { .hero { grid-template-columns: 1fr 1fr; align-items: center; } }
+
+    /* Extra content for scrolling */
+    .extra { margin-bottom: 2rem; }
   </style>
 </head>
 <body data-theme="light">
 
-  <!-- Theme circles -->
   <div class="theme-circles">
     <button data-theme="bright" title="Bright Theme"></button>
     <button data-theme="dark" title="Dark Theme"></button>
@@ -149,11 +146,11 @@
       <p>Common training and personal aircraft used worldwide.</p>
       <div class="grid">
         <figure>
-          <img src="images/piper_pa28.jpg" alt="Piper PA-28 Archer in flight">
+          <img src="images/pa28.jpg" alt="Piper PA-28 Archer in flight">
           <figcaption>Piper PA-28 Archer</figcaption>
         </figure>
         <figure>
-          <img src="images/cessna152.jpg" alt="Cessna 152 on runway">
+          <img src="images/c152.jpg" alt="Cessna 152 on a ramp">
           <figcaption>Cessna 152</figcaption>
         </figure>
         <figure>
@@ -172,6 +169,15 @@
         <li>Read POHs and AFMs</li>
         <li>Visit airfields and flight schools</li>
       </ul>
+    </section>
+
+    <!-- Extra text to extend page for scrolling -->
+    <section class="extra">
+      <h2>Extra Aviation Insights</h2>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum vehicula velit vel turpis egestas, at imperdiet justo gravida. Suspendisse potenti. Mauris ac purus sit amet nisl dapibus fermentum.</p>
+      <p>Phasellus nec risus at lorem tristique dapibus. Quisque vulputate, erat in vehicula malesuada, justo sapien venenatis lectus, eget malesuada ex augue nec justo. Sed sit amet turpis nec nibh gravida vulputate.</p>
+      <p>Curabitur in leo vel leo tincidunt fermentum. Fusce commodo diam vitae sapien laoreet, a vehicula lacus mattis. Integer nec augue sed purus dictum congue.</p>
+      <p>Keep scrolling to see the background plane swap smoothly!</p>
     </section>
 
     <section id="contact">
@@ -210,7 +216,6 @@
       }
     }
 
-    // Click handlers
     buttons.forEach(btn => {
       btn.addEventListener('click', () => {
         const mode = btn.dataset.theme;
@@ -219,52 +224,37 @@
       });
     });
 
-    // Smooth background fade on scroll
-    window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const fade = Math.max(0, 0.2 - scrollY / 1000); // fade from 0.2 to 0
-      document.body.style.setProperty('--bg-opacity', fade);
-      document.body.style.setProperty('--before-opacity', fade); // optional if needed
-      document.body.style.setProperty('--bg-opacity', fade); // fallback
-      document.querySelector('body::before'); // works with CSS fallback
-      document.body.style.setProperty('--bg-opacity', fade);
-      document.body.style.setProperty('--before-opacity', fade);
-      document.body.style.setProperty('opacity', 1); // just to trigger repaint
-      document.body.style.setProperty('--fade', fade);
-      document.body.style.setProperty('--bg-opacity', fade);
-      document.querySelector('body').style.setProperty('--fade', fade);
-      document.body.style.opacity = 1; // force repaint
-      document.body.style.setProperty('--fade', fade);
-      document.body.style.opacity = 1; // final
-      document.body.style.setProperty('--fade', fade);
-      document.body.style.opacity = 1;
-      document.querySelector('body::before'); // force repaint
-      document.body.style.setProperty('--fade', fade);
-      document.body.style.opacity = 1;
-      document.body.style.setProperty('--fade', fade);
-      document.body.style.opacity = 1;
-      document.body.style.setProperty('--fade', fade);
-      document.querySelector('body').style.setProperty('--fade', fade);
-      document.body.style.setProperty('--fade', fade);
-      document.body.style.opacity = 1;
-      document.querySelector('body').style.setProperty('--fade', fade);
-      document.body.style.setProperty('--fade', fade);
-      document.body.style.opacity = 1;
-
-      // simpler: directly adjust ::before
-      document.body.style.setProperty('--before-opacity', fade);
-      document.querySelector('body::before');
-      document.body.style.opacity = 1;
-      document.body.style.setProperty('--fade', fade);
-      document.body.style.opacity = 1;
-      document.querySelector('body').style.setProperty('--fade', fade);
-      document.body.style.opacity = 1;
-      document.querySelector('body::before').style.opacity = fade; // works in Chrome
-    });
-
     // Load saved theme
     const savedMode = localStorage.getItem('themeMode') || 'auto';
     applyTheme(savedMode);
+
+    // Scroll-based background swap with fade
+    const bgImages = [
+      {img: 'images/cessna172.jpg', start: 0, end: 600},
+      {img: 'images/pa28.jpg', start: 600, end: 1200},
+      {img: 'images/c152.jpg', start: 1200, end: 9999}
+    ];
+
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      let current = bgImages[0];
+
+      for(const bg of bgImages) {
+        if(scrollY >= bg.start && scrollY < bg.end) current = bg;
+      }
+
+      // Set background image
+      document.body.style.setProperty('background-image', `url('${current.img}')`);
+
+      // Smooth fade: opacity decreases as you scroll through this section
+      const fade = Math.max(0.2 - (scrollY - current.start)/ (current.end - current.start) * 0.2, 0);
+      document.body.style.setProperty('opacity', 1); // force repaint
+      document.body.style.setProperty('--bg-opacity', fade);
+      document.querySelector('body::before'); // for browsers
+      document.querySelector('body').style.setProperty('--fade', fade);
+      document.body.style.opacity = 1; 
+    });
   </script>
+
 </body>
 </html>
