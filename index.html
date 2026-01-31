@@ -1,56 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Discover Aviation & Aeronautical Engineering</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Discover Aeronautical Engineering & Aviation</title>
 
-  <!-- ACCESSIBILITY META -->
-  <meta name="description" content="Discover aeronautical engineering and general aviation aircraft like Cessna and Piper." />
-  <meta name="color-scheme" content="light dark" />
+  <meta name="description" content="Discover aeronautical engineering and general aviation aircraft like Cessna and Piper.">
 
   <style>
-    :root {
-      --bg: #ffffff;
-      --fg: #000000;
-      --accent: #222;
-      --border: #ccc;
-    }
-
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: var(--bg);
-      color: var(--fg);
+      background: #fff;
+      color: #000;
       line-height: 1.6;
     }
 
-    a {
-      color: var(--fg);
-      text-decoration: underline;
-    }
-
-    a:focus,
-    button:focus,
-    input:focus,
-    textarea:focus {
-      outline: 3px solid var(--fg);
-      outline-offset: 2px;
-    }
-
-    header {
-      border-bottom: 2px solid var(--fg);
+    header, footer {
+      border-bottom: 2px solid #000;
       padding: 1rem;
+    }
+
+    footer {
+      border-top: 2px solid #000;
+      border-bottom: none;
+      text-align: center;
     }
 
     nav {
       display: flex;
-      flex-wrap: wrap;
       gap: 1rem;
+      flex-wrap: wrap;
     }
 
     nav a {
       font-weight: 600;
+      text-decoration: underline;
+      color: #000;
     }
 
     main {
@@ -63,20 +49,14 @@
       margin-bottom: 4rem;
     }
 
-    h1, h2, h3 {
-      line-height: 1.2;
-    }
-
     .hero {
       display: grid;
-      grid-template-columns: 1fr;
       gap: 1.5rem;
     }
 
     .hero img {
       width: 100%;
-      height: auto;
-      border: 2px solid var(--fg);
+      border: 2px solid #000;
     }
 
     .grid {
@@ -86,59 +66,45 @@
     }
 
     figure {
+      border: 2px solid #000;
       margin: 0;
-      border: 2px solid var(--fg);
     }
 
     figure img {
       width: 100%;
-      height: auto;
       display: block;
     }
 
     figcaption {
       padding: 0.5rem;
       font-weight: 600;
-      background: #f5f5f5;
+      background: #f3f3f3;
     }
 
     .card {
-      border: 2px solid var(--fg);
+      border: 2px solid #000;
       padding: 1rem;
     }
 
-    form {
-      max-width: 600px;
-    }
-
     label {
+      font-weight: 600;
       display: block;
       margin-top: 1rem;
-      font-weight: 600;
     }
 
-    input,
-    textarea,
-    button {
+    input, textarea, button {
       width: 100%;
       padding: 0.6rem;
       margin-top: 0.3rem;
-      font-size: 1rem;
-      border: 2px solid var(--fg);
-      background: var(--bg);
-      color: var(--fg);
+      border: 2px solid #000;
+      background: #fff;
+      color: #000;
     }
 
     button {
       margin-top: 1.5rem;
-      cursor: pointer;
       font-weight: 700;
-    }
-
-    footer {
-      border-top: 2px solid var(--fg);
-      padding: 1rem;
-      text-align: center;
+      cursor: pointer;
     }
 
     @media (min-width: 700px) {
@@ -162,110 +128,46 @@
   </header>
 
   <main id="home">
-    <!-- HERO -->
-    <section class="hero" aria-labelledby="hero-title">
+    <section class="hero">
       <div>
-        <h1 id="hero-title">Discover Aeronautical Engineering & Aviation</h1>
+        <h1>Discover Aeronautical Engineering & Aviation</h1>
         <p>
-          A beginner-friendly introduction to how aircraft fly, how they are engineered,
-          and why general aviation aircraft like Cessna and Piper are the backbone of aviation.
+          Learn how aircraft fly, how they are engineered, and why general aviation
+          aircraft form the foundation of aviation worldwide.
         </p>
       </div>
-      <img 
-        src="https://upload.wikimedia.org/wikipedia/commons/3/3e/Cessna_172S_Skyhawk_SP.jpg"
-        alt="Cessna 172 parked on an airfield" />
+
+      <!-- LOCAL IMAGE -->
+      <img src="images/cessna172.jpg" alt="Cessna 172 parked on an airfield">
     </section>
 
-    <!-- ABOUT -->
-    <section id="about" aria-labelledby="about-title">
-      <h2 id="about-title">What is Aeronautical Engineering?</h2>
+    <section id="about">
+      <h2>What is Aeronautical Engineering?</h2>
       <p>
-        Aeronautical engineering focuses on the design, construction, testing,
-        and operation of aircraft. It covers aerodynamics, structures,
-        propulsion, avionics, and flight mechanics.
+        Aeronautical engineering focuses on aircraft design, aerodynamics,
+        propulsion, structures, and avionics.
       </p>
+
       <div class="grid">
         <div class="card">
           <h3>Aerodynamics</h3>
-          <p>How air flows around wings and produces lift.</p>
+          <p>Lift, drag, thrust, and airflow around wings.</p>
         </div>
         <div class="card">
           <h3>Structures</h3>
-          <p>How aircraft stay strong while remaining lightweight.</p>
+          <p>Strong, lightweight airframes designed to handle stress.</p>
         </div>
         <div class="card">
           <h3>Propulsion</h3>
-          <p>Piston engines, turboprops, and jet engines.</p>
+          <p>Piston engines and turboprops used in GA aircraft.</p>
         </div>
       </div>
     </section>
 
-    <!-- AIRCRAFT -->
-    <section id="aircraft" aria-labelledby="aircraft-title">
-      <h2 id="aircraft-title">General Aviation Aircraft</h2>
-      <p>
-        General aviation (GA) aircraft are commonly used for training,
-        personal travel, and engineering fundamentals.
-      </p>
+    <section id="aircraft">
+      <h2>General Aviation Aircraft</h2>
+      <p>Common training and personal aircraft used around the world.</p>
 
       <div class="grid">
         <figure>
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/6/62/Piper_PA-28-181_Archer_II.jpg"
-            alt="Piper PA-28 Archer in flight" />
-          <figcaption>Piper PA-28 Archer</figcaption>
-        </figure>
-
-        <figure>
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/7/7e/Cessna_152.jpg"
-            alt="Cessna 152 on runway" />
-          <figcaption>Cessna 152</figcaption>
-        </figure>
-
-        <figure>
-          <img 
-            src="https://upload.wikimedia.org/wikipedia/commons/4/4c/Cessna_172N.jpg"
-            alt="Cessna 172 flying above clouds" />
-          <figcaption>Cessna 172 Skyhawk</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <!-- LEARN -->
-    <section id="learn" aria-labelledby="learn-title">
-      <h2 id="learn-title">How to Start Learning Aviation</h2>
-      <ul>
-        <li>Study basic physics and mathematics</li>
-        <li>Learn aircraft parts and systems</li>
-        <li>Use flight simulators for practice</li>
-        <li>Read POHs (Pilot Operating Handbooks)</li>
-        <li>Visit local airfields and flight schools</li>
-      </ul>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" aria-labelledby="contact-title">
-      <h2 id="contact-title">Contact</h2>
-      <p>If you want more information or guidance, reach out below.</p>
-
-      <form aria-label="Contact form">
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" required />
-
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" required />
-
-        <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
-
-        <button type="submit">Send Message</button>
-      </form>
-    </section>
-  </main>
-
-  <footer>
-    <p>© 2026 Discover Aviation — Educational Use Only</p>
-  </footer>
-</body>
-</html>
+          <img src="i
