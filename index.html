@@ -190,43 +190,37 @@ button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 </footer>
 
 <script>
-const buttons = document.querySelectorAll('.theme-circles button');
-function applyTheme(mode){
-  if(mode==='auto'){
-    const hour = new Date().getUTCHours();
-    document.body.dataset.theme = hour>=17?'dark':'light';
-  } else if(mode==='bright') document.body.dataset.theme='light';
-  else document.body.dataset.theme='dark';
-}
-buttons.forEach(btn => btn.addEventListener('click', ()=>{ 
-  const mode = btn.dataset.theme;
-  localStorage.setItem('themeMode', mode);
-  applyTheme(mode);
-}));
-applyTheme(localStorage.getItem('themeMode') || 'auto');
-
-// Smooth fade background
 const layers = [
-  {id:'bg-cessna172', section:'cessna172'},
-  {id:'bg-pa28', section:'piper'},
-  {id:'bg-cessna152', section:'cessna152'}
+  {id:'bg-cessna172', section:'cessna172', el:null, sec:null},
+  {id:'bg-piper', section:'pa28', el:null, sec:null},
+  {id:'bg-cessna152', section:'cessna152', el:null, sec:null}
 ];
 
-window.addEventListener('scroll', ()=>{
-  const y = window.scrollY + window.innerHeight/3;
+window.addEventListener('load', ()=>{
   layers.forEach(l=>{
-    const sec = document.getElementById(l.section);
-    const el = document.getElementById(l.id);
-    const top = sec.offsetTop;
-    const bottom = top + sec.offsetHeight;
-    if(y>=top && y<=bottom){
-      // fade in proportional to position within section
-      const progress = (y-top)/(bottom-top);
-      el.style.opacity = 0.2 + 0.3 * Math.sin(progress*Math.PI); // smooth fade
-    } else el.style.opacity = 0;
+    l.el = document.getElementById(l.id);
+    l.sec = document.getElementById(l.section);
   });
+
+  const updateOpacity = ()=>{
+    const y = window.scrollY + window.innerHeight/3;
+    layers.forEach(l=>{
+      const top = l.sec.offsetTop;
+      const bottom = top + l.sec.offsetHeight;
+      if(y >= top && y <= bottom){
+        const progress = (y - top)/(bottom - top);
+        l.el.style.opacity = 0.2 + 0.3 * Math.sin(progress*Math.PI); // fade 0.2 → 0.5 → 0.2
+      } else {
+        l.el.style.opacity = 0;
+      }
+    });
+  };
+
+  updateOpacity();
+  window.addEventListener('scroll', updateOpacity);
 });
 </script>
+
 
 </body>
 </html>
