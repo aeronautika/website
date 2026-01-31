@@ -1,42 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Discover Aeronautical Engineering & Aviation</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Discover Aviation & Aeronautical Engineering</title>
 
-  <meta name="description" content="Discover aeronautical engineering and general aviation aircraft like Cessna and Piper.">
+  <meta name="description" content="Discover aeronautical engineering and general aviation aircraft like Cessna and Piper." />
+  <meta name="color-scheme" content="light dark" />
 
   <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #000000;
+      --border: #000000;
+    }
+
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background: #fff;
-      color: #000;
+      background: var(--bg);
+      color: var(--fg);
       line-height: 1.6;
     }
 
-    header, footer {
-      border-bottom: 2px solid #000;
-      padding: 1rem;
+    a {
+      color: var(--fg);
+      text-decoration: underline;
     }
 
-    footer {
-      border-top: 2px solid #000;
-      border-bottom: none;
-      text-align: center;
+    a:focus,
+    button:focus,
+    input:focus,
+    textarea:focus {
+      outline: 3px solid var(--fg);
+      outline-offset: 2px;
+    }
+
+    header {
+      border-bottom: 2px solid var(--border);
+      padding: 1rem;
     }
 
     nav {
       display: flex;
-      gap: 1rem;
       flex-wrap: wrap;
+      gap: 1rem;
     }
 
     nav a {
       font-weight: 600;
-      text-decoration: underline;
-      color: #000;
     }
 
     main {
@@ -49,14 +61,20 @@
       margin-bottom: 4rem;
     }
 
+    h1, h2, h3 {
+      line-height: 1.2;
+    }
+
     .hero {
       display: grid;
+      grid-template-columns: 1fr;
       gap: 1.5rem;
     }
 
     .hero img {
       width: 100%;
-      border: 2px solid #000;
+      height: auto;
+      border: 2px solid var(--border);
     }
 
     .grid {
@@ -66,45 +84,59 @@
     }
 
     figure {
-      border: 2px solid #000;
       margin: 0;
+      border: 2px solid var(--border);
     }
 
     figure img {
       width: 100%;
+      height: auto;
       display: block;
     }
 
     figcaption {
       padding: 0.5rem;
       font-weight: 600;
-      background: #f3f3f3;
+      background: #f2f2f2;
     }
 
     .card {
-      border: 2px solid #000;
+      border: 2px solid var(--border);
       padding: 1rem;
     }
 
-    label {
-      font-weight: 600;
-      display: block;
-      margin-top: 1rem;
+    form {
+      max-width: 600px;
     }
 
-    input, textarea, button {
+    label {
+      display: block;
+      margin-top: 1rem;
+      font-weight: 600;
+    }
+
+    input,
+    textarea,
+    button {
       width: 100%;
       padding: 0.6rem;
       margin-top: 0.3rem;
-      border: 2px solid #000;
-      background: #fff;
-      color: #000;
+      font-size: 1rem;
+      border: 2px solid var(--border);
+      background: var(--bg);
+      color: var(--fg);
     }
 
     button {
       margin-top: 1.5rem;
-      font-weight: 700;
       cursor: pointer;
+      font-weight: 700;
+    }
+
+    footer {
+      border-top: 2px solid var(--border);
+      padding: 1rem;
+      text-align: center;
     }
 
     @media (min-width: 700px) {
@@ -132,30 +164,30 @@
       <div>
         <h1>Discover Aeronautical Engineering & Aviation</h1>
         <p>
-          Learn how aircraft fly, how they are engineered, and why general aviation
-          aircraft form the foundation of aviation worldwide.
+          A beginner-friendly introduction to how aircraft fly, how they are engineered,
+          and why general aviation aircraft form the foundation of aviation.
         </p>
       </div>
 
-      <!-- LOCAL IMAGE -->
       <img src="images/cessna172.jpg" alt="Cessna 172 parked on an airfield">
     </section>
 
     <section id="about">
       <h2>What is Aeronautical Engineering?</h2>
       <p>
-        Aeronautical engineering focuses on aircraft design, aerodynamics,
-        propulsion, structures, and avionics.
+        Aeronautical engineering focuses on the design, construction, testing,
+        and operation of aircraft. It covers aerodynamics, structures,
+        propulsion, avionics, and flight mechanics.
       </p>
 
       <div class="grid">
         <div class="card">
           <h3>Aerodynamics</h3>
-          <p>Lift, drag, thrust, and airflow around wings.</p>
+          <p>How air flows around wings and produces lift.</p>
         </div>
         <div class="card">
           <h3>Structures</h3>
-          <p>Strong, lightweight airframes designed to handle stress.</p>
+          <p>How aircraft remain strong while staying lightweight.</p>
         </div>
         <div class="card">
           <h3>Propulsion</h3>
@@ -166,8 +198,61 @@
 
     <section id="aircraft">
       <h2>General Aviation Aircraft</h2>
-      <p>Common training and personal aircraft used around the world.</p>
+      <p>
+        General aviation aircraft are widely used for flight training,
+        personal travel, and engineering fundamentals.
+      </p>
 
       <div class="grid">
         <figure>
-          <img src="i
+          <img src="images/piper_pa28.jpg" alt="Piper PA-28 Archer in flight">
+          <figcaption>Piper PA-28 Archer</figcaption>
+        </figure>
+
+        <figure>
+          <img src="images/cessna152.jpg" alt="Cessna 152 on the runway">
+          <figcaption>Cessna 152</figcaption>
+        </figure>
+
+        <figure>
+          <img src="images/cessna172.jpg" alt="Cessna 172 in flight">
+          <figcaption>Cessna 172 Skyhawk</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section id="learn">
+      <h2>How to Start Learning Aviation</h2>
+      <ul>
+        <li>Study mathematics and physics</li>
+        <li>Learn aircraft systems and performance</li>
+        <li>Use flight simulators</li>
+        <li>Read POHs and AFMs</li>
+        <li>Visit airfields and flight schools</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>If you want more information or guidance, reach out below.</p>
+
+      <form>
+        <label for="name">Name</label>
+        <input id="name" type="text" required>
+
+        <label for="email">Email</label>
+        <input id="email" type="email" required>
+
+        <label for="message">Message</label>
+        <textarea id="message" rows="5" required></textarea>
+
+        <button type="submit">Send Message</button>
+      </form>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2026 Discover Aviation — Educational Use</p>
+  </footer>
+</body>
+</html>
