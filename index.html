@@ -27,7 +27,6 @@ body {
   color: var(--fg);
   line-height: 1.6;
   transition: background 0.3s, color 0.3s;
-  min-height: 100vh;
   position: relative;
   overflow-x: hidden;
 }
@@ -43,7 +42,7 @@ body {
   background-position: center;
   z-index: -10;
   opacity: 0;
-  transition: opacity 0.8s ease-in-out;
+  transition: opacity 1s ease-in-out;
   pointer-events: none;
 }
 
@@ -74,7 +73,7 @@ body {
 
 /* Header & Footer */
 header {
-  background: rgba(0,0,0,0); /* transparent */
+  background: rgba(0,0,0,0);
   border-bottom: none;
   padding: 1rem;
   width: 100%;
@@ -98,25 +97,16 @@ footer {
 }
 
 main { max-width: 1100px; margin: auto; padding: 2rem 1rem; }
-section { margin-bottom: 6rem; }
+section { margin-bottom: 6rem; padding-top: 50px; min-height: 800px; }
 h1,h2,h3 { line-height: 1.2; }
 
 .hero { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
 .hero img { width: 100%; height: auto; border: 2px solid var(--border); }
 
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; }
-.card { border: 2px solid var(--border); padding: 1rem; background: var(--card-bg); }
-
 form { max-width: 100%; }
 label { display: block; margin-top: 1rem; font-weight: 600; }
 input, textarea, button { width: 100%; padding: 0.6rem; margin-top: 0.3rem; font-size: 1rem; border: 2px solid var(--border); background: var(--bg); color: var(--fg); }
 button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
-
-@media (min-width: 700px) { .hero { grid-template-columns: 1fr 1fr; align-items: center; } }
-
-.aircraft-section { min-height: 1200px; padding-top: 50px; }
-.aircraft-section h2 { margin-bottom: 1rem; }
-.aircraft-section p { margin-bottom: 1rem; }
 
 </style>
 </head>
@@ -136,63 +126,45 @@ button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 
 <header>
   <nav aria-label="Main navigation">
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
+    <a href="#c408">C408</a>
     <a href="#cessna172">C172</a>
-    <a href="#piper">PA-28</a>
+    <a href="#piper">PA28</a>
     <a href="#cessna152">C152</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<main id="home">
-<section class="hero">
-  <div>
-    <h1>Discover Aeronautical Engineering & Aviation</h1>
-    <p>Learn how aircraft fly, how they are engineered, and explore general aviation aircraft like Cessna and Piper. Scroll down to see smooth background fades per aircraft, and discover the science behind every flight.</p>
-  </div>
-  <img src="images/cessna172.jpg" alt="Cessna 172 on airfield">
-</section>
-
-<!-- About Section with C408 background -->
-<section id="about" class="aircraft-section">
-<h2>About Aeronautical Engineering</h2>
-<p>The process of assembling an aircraft is a marvel of precision engineering. Every component, from fuselage panels to control surfaces, is meticulously designed, tested, and fitted to ensure structural integrity, safety, and optimal performance. Engineers and technicians work together to bring aerodynamic principles to life, applying knowledge of materials, mechanics, and propulsion to create a functioning aircraft. This assembly phase exemplifies the blend of science, skill, and careful planning that defines aeronautical engineering.</p>
-
-<p>Aeronautical engineering is the discipline of designing, developing, and maintaining aircraft. It combines physics, mathematics, materials science, and mechanics to ensure aircraft fly safely, efficiently, and reliably. Engineers study aerodynamics to optimize airflow around wings and fuselage, structures to build lightweight yet durable airframes, and propulsion systems to deliver consistent and controlled thrust. Modern aircraft also incorporate avionics and control systems to allow precise navigation, communication, and automated safety measures.</p>
-
-<p>Key areas of focus include lift and drag optimization, stability analysis, engine performance, material stress testing, and systems integration. Innovation in aeronautical engineering has enabled smaller trainers like the Cessna 152 to coexist with advanced jets capable of supersonic flight. Every design decision — from wing shape to control surface sizing — affects how an aircraft performs, responds to turbulence, and consumes fuel. Aeronautical engineers must balance performance, safety, efficiency, and cost, creating a complex puzzle that drives the evolution of aviation. Flight simulators, wind tunnel testing, and iterative prototyping are all critical parts of the design process, ensuring every aircraft meets rigorous standards before leaving the hangar.</p>
-
-<p>Through decades of development, aeronautical engineering continues to evolve, integrating lightweight composites, advanced avionics, and fuel-efficient propulsion systems, shaping the way people, goods, and ideas travel across the skies.</p>
+<main>
+<!-- Cessna 408 Section -->
+<section id="c408">
+<h2>Cessna 408 SkyCourier Assembly</h2>
+<p>The Cessna 408 SkyCourier represents modern aeronautical engineering excellence. Engineers meticulously design every fuselage panel, wing structure, and control system to ensure optimal safety, performance, and reliability. The assembly process blends advanced materials, precision machining, and aerodynamic testing, showcasing how science and craftsmanship come together to produce a functioning aircraft. This stage highlights the core of aeronautical engineering: combining physics, mechanics, and materials science to make flight possible.</p>
+<p>From lift optimization to engine integration, every component of the C408 is tested for durability, performance, and efficiency. This aircraft demonstrates how modern GA designs balance cargo capacity, reliability, and maintainability, giving pilots a versatile and dependable platform.</p>
 </section>
 
 <!-- Cessna 172 Section -->
-<section id="cessna172" class="aircraft-section">
+<section id="cessna172">
 <h2>Cessna 172 Skyhawk</h2>
-<figure>
-  <img src="images/c408.jpg" alt="Cessna 172 assembly in hangar">
-  <figcaption>Assembling the Cessna 172 — behind the scenes of aeronautical engineering</figcaption>
-</figure>
-<p>The Cessna 172 Skyhawk is one of the most widely used general aviation aircraft in history, favored for training, personal flying, and light commercial duties. Powered by a reliable single piston engine, it offers forgiving flight characteristics that make it ideal for novice pilots. The high-wing design provides excellent visibility, stability, and short-field takeoff and landing capabilities, critical for small airfields.</p>
-<p>From an engineering perspective, the C172 demonstrates balance between weight, structural integrity, and aerodynamics. Its design emphasizes ease of maintenance and predictable handling. Pilots learn essential skills such as stall recovery, navigation, and flight planning in this aircraft, which has become a standard across flight schools worldwide. The C172 is not only a training platform but also a testament to decades of iterative improvements in general aviation design.</p>
+<p>The Cessna 172 Skyhawk is the most widely used general aviation aircraft worldwide. Known for its reliability and forgiving flight characteristics, it is ideal for flight training and personal use. Its high-wing configuration provides stability and excellent visibility, making it a favorite among students and private pilots.</p>
+<p>Engineering highlights include lightweight structural materials, efficient aerodynamics, and a robust piston engine. The aircraft demonstrates a careful balance between performance, maintenance simplicity, and safety. Pilots learn fundamental flying skills like takeoffs, landings, and navigation in this iconic trainer.</p>
 </section>
 
 <!-- Piper PA28 Section -->
-<section id="piper" class="aircraft-section">
+<section id="piper">
 <h2>Piper PA-28 Archer</h2>
-<p>The Piper PA-28 Archer is a low-wing aircraft widely used for flight training and personal transportation. Its sleek design and more powerful engine provide faster cruise speeds, longer range, and efficient fuel consumption while maintaining smooth handling. The PA-28's low-wing structure allows better visibility below the aircraft and supports advanced training in complex maneuvers.</p>
-<p>Engineers focused on stability, control, and ergonomics to make the PA-28 an ideal trainer for instrument flying. Its avionics and cockpit layout allow pilots to practice both visual and instrument navigation. Structurally, the PA-28 balances durability with weight savings, using carefully engineered materials and stress-tested components. This combination of performance, safety, and reliability makes it a favorite among flight schools and private owners alike.</p>
+<p>The Piper PA-28 Archer is a low-wing aircraft designed for training and personal aviation. Its design emphasizes smooth handling, longer range, and efficient fuel usage. The low-wing structure improves visibility and supports advanced flight maneuvers.</p>
+<p>From an engineering standpoint, the PA-28 focuses on control, stability, and ergonomics. Avionics systems allow pilots to practice both visual and instrument flying, while the airframe balances durability with weight efficiency. This makes it a reliable platform for both novice and experienced pilots.</p>
 </section>
 
 <!-- Cessna 152 Section -->
-<section id="cessna152" class="aircraft-section">
+<section id="cessna152">
 <h2>Cessna 152</h2>
-<p>The Cessna 152 is a two-seat trainer aircraft designed for simplicity, efficiency, and reliability. Its lightweight design makes it economical to operate while providing predictable flight characteristics, perfect for student pilots. The aircraft’s design emphasizes responsive control and straightforward systems, allowing learners to focus on mastering the fundamentals of flight.</p>
-<p>From an engineering perspective, the C152 illustrates the balance of minimalism and safety. Its piston engine is efficient and robust, and the airframe is built to endure repeated training cycles. The aircraft continues to serve in flight schools worldwide, teaching generations of pilots essential skills while demonstrating how thoughtful design enables a long service life with minimal maintenance.</p>
+<p>The Cessna 152 is a two-seat trainer that is economical, reliable, and simple to operate. Its lightweight design and predictable flight characteristics make it perfect for student pilots learning the fundamentals of flight.</p>
+<p>Engineering focuses on minimalism without compromising safety. The airframe and piston engine are built to endure repeated training cycles, demonstrating how thoughtful design enables long service life with minimal maintenance. The C152 continues to be a staple in flight schools worldwide.</p>
 </section>
 
 <!-- Contact Section -->
-<section id="contact" class="aircraft-section">
+<section id="contact">
 <h2>Contact</h2>
 <p>If you want guidance or more info about aviation, aeronautical engineering, or specific aircraft, reach out below:</p>
 <form>
@@ -229,9 +201,9 @@ buttons.forEach(btn => btn.addEventListener('click', ()=>{
 }));
 applyTheme(localStorage.getItem('themeMode') || 'auto');
 
-// Smooth fade background
+// Background fade per section
 const layers = [
-  {id:'bg-c408', section:'about', el:null, sec:null},
+  {id:'bg-c408', section:'c408', el:null, sec:null},
   {id:'bg-cessna172', section:'cessna172', el:null, sec:null},
   {id:'bg-piper', section:'piper', el:null, sec:null},
   {id:'bg-cessna152', section:'cessna152', el:null, sec:null}
@@ -244,17 +216,14 @@ window.addEventListener('load', ()=>{
   });
 
   const updateOpacity = ()=>{
-    const y = window.scrollY + window.innerHeight/2; // middle of viewport
-    layers.forEach((l, idx)=>{
+    const y = window.scrollY + window.innerHeight/2;
+    layers.forEach(l=>{
       const top = l.sec.offsetTop;
       const bottom = top + l.sec.offsetHeight;
       if(y >= top && y <= bottom){
-        const progress = (y - top)/(bottom - top);
-        l.el.style.opacity = progress; // linear fade in
-      } else if(y < top){
-        l.el.style.opacity = 0;
-      } else {
         l.el.style.opacity = 1;
+      } else {
+        l.el.style.opacity = 0;
       }
     });
   };
