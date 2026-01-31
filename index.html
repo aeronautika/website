@@ -41,10 +41,21 @@ body {
   height:100%;
   background-size: cover;
   background-position: center;
-  z-index: -1;
+  z-index: -2;
   opacity: 0;
   transition: opacity 1s ease-in-out;
   pointer-events: none;
+}
+
+/* Drifting plane easter egg */
+#drift-plane {
+  position: fixed;
+  width: 40px;
+  opacity: 0.1;
+  z-index: -1;
+  top: 10%;
+  left: -50px;
+  transition: transform 0.1s linear;
 }
 
 /* Theme circles */
@@ -73,12 +84,29 @@ body {
 .theme-circles button[data-theme="auto"] { background: #888888; }
 
 /* Header & Footer */
-header, footer { border-bottom: 2px solid var(--border); padding: 1rem; }
-footer { border-top: 2px solid var(--border); border-bottom: none; text-align: center; }
-nav { display: flex; gap: 1rem; flex-wrap: wrap; }
-nav a { font-weight: 600; }
+header {
+  border-bottom: 2px solid var(--border);
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top:0;
+  background: var(--bg);
+  z-index: 100;
+}
+nav { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 1200px; }
+nav a { font-weight: 600; text-align: center; }
 a { color: var(--fg); text-decoration: underline; }
 a:focus, button:focus, input:focus, textarea:focus { outline: 3px solid var(--fg); outline-offset: 2px; }
+
+footer {
+  border-top: 2px solid var(--border);
+  border-bottom: none;
+  text-align: center;
+  padding: 1rem;
+  width: 100%;
+}
 
 main { max-width: 1100px; margin: auto; padding: 2rem 1rem; }
 section { margin-bottom: 6rem; }
@@ -94,7 +122,7 @@ figure { margin: 0; border: 2px solid var(--border); background: var(--card-bg);
 figure img { width: 100%; display: block; height: auto; }
 figcaption { padding: 0.5rem; font-weight: 600; }
 
-form { max-width: 600px; }
+form { max-width: 100%; }
 label { display: block; margin-top: 1rem; font-weight: 600; }
 input, textarea, button { width: 100%; padding: 0.6rem; margin-top: 0.3rem; font-size: 1rem; border: 2px solid var(--border); background: var(--bg); color: var(--fg); }
 button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
@@ -120,12 +148,16 @@ button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 <div class="bg-layer" id="bg-piper" style="background-image: url('images/pa28.jpg'); opacity:0;"></div>
 <div class="bg-layer" id="bg-cessna152" style="background-image: url('images/cessna152.jpg'); opacity:0;"></div>
 
+<!-- Drifting tiny plane -->
+<img src="images/cessna_icon.png" id="drift-plane" alt="drifting plane">
+
 <header>
   <nav aria-label="Main navigation">
     <a href="#home">Home</a>
     <a href="#about">About</a>
-    <a href="#aircraft">Aircraft</a>
-    <a href="#learn">Learn</a>
+    <a href="#cessna172">C172</a>
+    <a href="#piper">PA-28</a>
+    <a href="#cessna152">C152</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
@@ -134,45 +166,39 @@ button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 <section class="hero">
   <div>
     <h1>Discover Aeronautical Engineering & Aviation</h1>
-    <p>Learn how aircraft fly, how they are engineered, and explore general aviation aircraft like Cessna and Piper. Scroll down to see smooth background fades per aircraft.</p>
+    <p>Learn how aircraft fly, how they are engineered, and explore general aviation aircraft like Cessna and Piper. Scroll down to see smooth background fades per aircraft, and discover the science behind every flight.</p>
   </div>
   <img src="images/cessna172.jpg" alt="Cessna 172 on airfield">
 </section>
 
 <section id="about" class="aircraft-section">
-<h2>What is Aeronautical Engineering?</h2>
-<p>Aeronautical engineering is the art and science of designing, building, and maintaining aircraft. It covers aerodynamics, propulsion, structures, avionics, and systems integration.</p>
-<div class="grid">
-  <div class="card"><h3>Aerodynamics</h3><p>Lift, drag, thrust, airflow around wings, fuselage, and control surfaces. Understanding airflow is crucial for safe, efficient flight.</p></div>
-  <div class="card"><h3>Structures</h3><p>Lightweight and strong airframes are designed to endure stress from turbulence, maneuvers, and takeoff/landing cycles.</p></div>
-  <div class="card"><h3>Propulsion</h3><p>Piston engines, turboprops, and jets provide thrust to move the aircraft. Knowledge of engines and fuel systems is key.</p></div>
-</div>
+<h2>About Aeronautical Engineering</h2>
+<p>Aeronautical engineering is the discipline of designing, developing, and maintaining aircraft. It combines physics, mathematics, materials science, and mechanics to ensure aircraft fly safely, efficiently, and reliably. Engineers study aerodynamics to optimize airflow around wings and fuselage, structures to build lightweight yet durable airframes, and propulsion systems to deliver consistent and controlled thrust. Modern aircraft also incorporate avionics and control systems to allow precise navigation, communication, and automated safety measures.</p>
+<p>Key areas of focus include lift and drag optimization, stability analysis, engine performance, material stress testing, and systems integration. Innovation in aeronautical engineering has enabled smaller trainers like the Cessna 152 to coexist with advanced jets capable of supersonic flight. Every design decision — from wing shape to control surface sizing — affects how an aircraft performs, responds to turbulence, and consumes fuel. Aeronautical engineers must balance performance, safety, efficiency, and cost, creating a complex puzzle that drives the evolution of aviation. Flight simulators, wind tunnel testing, and iterative prototyping are all critical parts of the design process, ensuring every aircraft meets rigorous standards before leaving the hangar.</p>
+<p>Through decades of development, aeronautical engineering continues to evolve, integrating lightweight composites, advanced avionics, and fuel-efficient propulsion systems, shaping the way people, goods, and ideas travel across the skies.</p>
 </section>
 
 <section id="cessna172" class="aircraft-section">
 <h2>Cessna 172 Skyhawk</h2>
-<p>The Cessna 172 is one of the most popular general aviation aircraft worldwide. It is commonly used for flight training, personal transport, and light commercial duties.</p>
-<p>Powered by a single piston engine, it offers reliable performance and forgiving flight characteristics, making it ideal for new pilots.</p>
-<p>Its high-wing design provides excellent visibility, stability, and short takeoff and landing capabilities.</p>
+<p>The Cessna 172 Skyhawk is one of the most widely used general aviation aircraft in history, favored for training, personal flying, and light commercial duties. Powered by a reliable single piston engine, it offers forgiving flight characteristics that make it ideal for novice pilots. The high-wing design provides excellent visibility, stability, and short-field takeoff and landing capabilities, critical for small airfields.</p>
+<p>From an engineering perspective, the C172 demonstrates balance between weight, structural integrity, and aerodynamics. Its design emphasizes ease of maintenance and predictable handling. Pilots learn essential skills such as stall recovery, navigation, and flight planning in this aircraft, which has become a standard across flight schools worldwide. The C172 is not only a training platform but also a testament to decades of iterative improvements in general aviation design.</p>
 </section>
 
 <section id="piper" class="aircraft-section">
 <h2>Piper PA-28 Archer</h2>
-<p>The Piper PA-28 Archer is a low-wing aircraft designed for training and personal use. Known for its smooth handling and robust build.</p>
-<p>It has a more powerful engine than the Cessna 172, offering faster cruise speeds and longer range, while maintaining ease of control.</p>
-<p>Its avionics suite is advanced yet pilot-friendly, making it suitable for instrument training as well.</p>
+<p>The Piper PA-28 Archer is a low-wing aircraft widely used for flight training and personal transportation. Its sleek design and more powerful engine provide faster cruise speeds, longer range, and efficient fuel consumption while maintaining smooth handling. The PA-28's low-wing structure allows better visibility below the aircraft and supports advanced training in complex maneuvers.</p>
+<p>Engineers focused on stability, control, and ergonomics to make the PA-28 an ideal trainer for instrument flying. Its avionics and cockpit layout allow pilots to practice both visual and instrument navigation. Structurally, the PA-28 balances durability with weight savings, using carefully engineered materials and stress-tested components. This combination of performance, safety, and reliability makes it a favorite among flight schools and private owners alike.</p>
 </section>
 
 <section id="cessna152" class="aircraft-section">
 <h2>Cessna 152</h2>
-<p>The Cessna 152 is a classic two-seater trainer aircraft. Lightweight, efficient, and economical, it is widely used in flight schools worldwide.</p>
-<p>It provides excellent control response and predictable handling, making it ideal for student pilots to build confidence.</p>
-<p>Its simplicity and reliability have kept it relevant for decades, offering an enduring platform for learning the fundamentals of flight.</p>
+<p>The Cessna 152 is a two-seat trainer aircraft designed for simplicity, efficiency, and reliability. Its lightweight design makes it economical to operate while providing predictable flight characteristics, perfect for student pilots. The aircraft’s design emphasizes responsive control and straightforward systems, allowing learners to focus on mastering the fundamentals of flight.</p>
+<p>From an engineering perspective, the C152 illustrates the balance of minimalism and safety. Its piston engine is efficient and robust, and the airframe is built to endure repeated training cycles. The aircraft continues to serve in flight schools worldwide, teaching generations of pilots essential skills while demonstrating how thoughtful design enables a long service life with minimal maintenance.</p>
 </section>
 
 <section id="contact" class="aircraft-section">
 <h2>Contact</h2>
-<p>If you want guidance or more info, reach out below:</p>
+<p>If you want guidance or more info about aviation, aeronautical engineering, or specific aircraft, reach out below:</p>
 <form>
   <label for="name">Name</label>
   <input id="name" type="text" required>
@@ -235,6 +261,15 @@ window.addEventListener('load', ()=>{
 
   updateOpacity();
   window.addEventListener('scroll', updateOpacity);
+
+  // Drift plane animation
+  const drift = document.getElementById('drift-plane');
+  let x = -50;
+  setInterval(()=>{
+    x += 0.3;
+    if(x > window.innerWidth+50) x = -50;
+    drift.style.transform = `translateX(${x}px)`;
+  },16);
 });
 </script>
 
