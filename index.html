@@ -129,7 +129,7 @@ button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 </div>
 
 <!-- Background layers -->
-<div class="bg-layer" id="bg-c407" style="background-image: url('images/c407.jpg'); opacity:1;"></div>
+<div class="bg-layer" id="bg-c408" style="background-image: url('images/c408.jpg'); opacity:1;"></div>
 <div class="bg-layer" id="bg-cessna172" style="background-image: url('images/cessna172.jpg'); opacity:0;"></div>
 <div class="bg-layer" id="bg-piper" style="background-image: url('images/pa28.jpg'); opacity:0;"></div>
 <div class="bg-layer" id="bg-cessna152" style="background-image: url('images/cessna152.jpg'); opacity:0;"></div>
@@ -154,9 +154,9 @@ button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
   <img src="images/cessna172.jpg" alt="Cessna 172 on airfield">
 </section>
 
-<!-- About Section with C407 background -->
-<section id="about" class="aircraft-section">
-<h2>About Aeronautical Engineering</h2>
+<!-- About Section with C408 background -->
+<section id="c408" class="aircraft-section">
+<h2>About Aeronautical Engineering - Behind the scenes</h2>
 <p>The process of assembling an aircraft is a marvel of precision engineering. Every component, from fuselage panels to control surfaces, is meticulously designed, tested, and fitted to ensure structural integrity, safety, and optimal performance. Engineers and technicians work together to bring aerodynamic principles to life, applying knowledge of materials, mechanics, and propulsion to create a functioning aircraft. This assembly phase exemplifies the blend of science, skill, and careful planning that defines aeronautical engineering.</p>
 
 <p>Aeronautical engineering is the discipline of designing, developing, and maintaining aircraft. It combines physics, mathematics, materials science, and mechanics to ensure aircraft fly safely, efficiently, and reliably. Engineers study aerodynamics to optimize airflow around wings and fuselage, structures to build lightweight yet durable airframes, and propulsion systems to deliver consistent and controlled thrust. Modern aircraft also incorporate avionics and control systems to allow precise navigation, communication, and automated safety measures.</p>
@@ -170,8 +170,8 @@ button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
 <section id="cessna172" class="aircraft-section">
 <h2>Cessna 172 Skyhawk</h2>
 <figure>
-  <img src="images/c408.jpg" alt="Cessna 172 assembly in hangar">
-  <figcaption>Assembling the Cessna 172 — behind the scenes of aeronautical engineering</figcaption>
+  <img src="images/cessna172.jpg" alt="The Cessna 172 Skyhawk">
+  <figcaption>In flight photograph of a C172</figcaption>
 </figure>
 <p>The Cessna 172 Skyhawk is one of the most widely used general aviation aircraft in history, favored for training, personal flying, and light commercial duties. Powered by a reliable single piston engine, it offers forgiving flight characteristics that make it ideal for novice pilots. The high-wing design provides excellent visibility, stability, and short-field takeoff and landing capabilities, critical for small airfields.</p>
 <p>From an engineering perspective, the C172 demonstrates balance between weight, structural integrity, and aerodynamics. Its design emphasizes ease of maintenance and predictable handling. Pilots learn essential skills such as stall recovery, navigation, and flight planning in this aircraft, which has become a standard across flight schools worldwide. The C172 is not only a training platform but also a testament to decades of iterative improvements in general aviation design.</p>
@@ -231,7 +231,7 @@ applyTheme(localStorage.getItem('themeMode') || 'auto');
 
 // Smooth fade background
 const layers = [
-  {id:'bg-c407', section:'about', el:null, sec:null},
+  {id:'bg-c408', section:'about', el:null, sec:null},
   {id:'bg-cessna172', section:'cessna172', el:null, sec:null},
   {id:'bg-piper', section:'piper', el:null, sec:null},
   {id:'bg-cessna152', section:'cessna152', el:null, sec:null}
@@ -264,4 +264,3 @@ window.addEventListener('load', ()=>{
 
 </body>
 </html>
-
