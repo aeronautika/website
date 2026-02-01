@@ -1,246 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Discover Aviation & Aeronautical Engineering</title>
-<meta name="description" content="Learn aeronautical engineering and general aviation aircraft like Cessna and Piper.">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>General Aviation & Engineering</title>
 
-<style>
-:root {
-  --bg: #ffffff;
-  --fg: #000000;
-  --border: #000000;
-  --card-bg: #f2f2f2;
-}
-[data-theme="dark"] {
-  --bg: #121212;
-  --fg: #ffffff;
-  --border: #ffffff;
-  --card-bg: #1e1e1e;
-}
+  <style>
+    :root {
+      --bg: #ffffff;
+      --fg: #000000;
+      --border: #000000;
+    }
 
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background: var(--bg);
-  color: var(--fg);
-  line-height: 1.6;
-  transition: background 0.3s, color 0.3s;
-  position: relative;
-  overflow-x: hidden;
-}
+    [data-theme="dark"] {
+      --bg: #121212;
+      --fg: #ffffff;
+      --border: #ffffff;
+    }
 
-/* Background layers */
-.bg-layer {
-  position: fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background-size: cover;
-  background-position: center;
-  z-index: -10;
-  opacity: 0;
-  transition: opacity 1s ease-in-out;
-  pointer-events: none;
-}
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      transition: background 0.3s, color 0.3s;
+      line-height: 1.6;
+    }
 
-/* Theme circles */
-.theme-circles {
-  position: fixed;
-  right: 1rem;
-  top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  z-index: 1000;
-}
-.theme-circles button {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  border: 2px solid var(--border);
-  background: var(--bg);
-  cursor: pointer;
-  transition: transform 0.2s, background 0.3s;
-}
-.theme-circles button:hover { transform: scale(1.2); }
-.theme-circles button[data-theme="dark"] { background: #121212; }
-.theme-circles button[data-theme="bright"] { background: #ffffff; }
-.theme-circles button[data-theme="auto"] { background: #888888; }
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1rem 2rem;
+      z-index: 1000;
+      background: transparent;
+    }
 
-/* Header & Footer */
-header {
-  background: rgba(0,0,0,0);
-  border-bottom: none;
-  padding: 1rem;
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  position: sticky;
-  top:0;
-  z-index: 100;
-}
-nav { display: flex; gap: 2rem; flex-wrap: wrap; justify-content: center; width: 100%; max-width: 1200px; }
-nav a { font-weight: 600; text-align: center; }
-a { color: var(--fg); text-decoration: underline; }
-a:focus, button:focus, input:focus, textarea:focus { outline: 3px solid var(--fg); outline-offset: 2px; }
+    nav a {
+      margin-right: 1.5rem;
+      text-decoration: underline;
+      color: var(--fg);
+      font-weight: 600;
+    }
 
-footer {
-  border-top: 2px solid var(--border);
-  border-bottom: none;
-  text-align: center;
-  padding: 1rem;
-  width: 100%;
-}
+    section {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 6rem 1.5rem;
+      box-sizing: border-box;
+    }
 
-main { max-width: 1100px; margin: auto; padding: 2rem 1rem; }
-section { margin-bottom: 6rem; padding-top: 50px; min-height: 800px; }
-h1,h2,h3 { line-height: 1.2; }
+    .overlay {
+      max-width: 900px;
+      margin: auto;
+      padding: 2rem;
+      background: rgba(255,255,255,0.85);
+      border: 2px solid var(--border);
+    }
 
-.hero { display: grid; grid-template-columns: 1fr; gap: 1.5rem; }
-.hero img { width: 100%; height: auto; border: 2px solid var(--border); }
+    [data-theme="dark"] .overlay {
+      background: rgba(0,0,0,0.65);
+    }
 
-form { max-width: 100%; }
-label { display: block; margin-top: 1rem; font-weight: 600; }
-input, textarea, button { width: 100%; padding: 0.6rem; margin-top: 0.3rem; font-size: 1rem; border: 2px solid var(--border); background: var(--bg); color: var(--fg); }
-button { margin-top: 1.5rem; font-weight: 700; cursor: pointer; }
+    h1, h2 {
+      margin-top: 0;
+    }
 
-</style>
+    /* BACKGROUNDS */
+    .bg {
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .bg-m20r {
+      background-image: url("images/m20r.jpg");
+    }
+
+    .bg-c408 {
+      background-image: url("images/c408.jpg");
+    }
+
+    .bg-c172 {
+      background-image: url("images/cessna172.jpg");
+    }
+
+    .bg-pa28 {
+      background-image: url("images/pa28.jpg");
+    }
+
+    .bg-c152 {
+      background-image: url("images/cessna152.jpg");
+    }
+
+    /* theme dots */
+    .theme-toggle {
+      position: fixed;
+      right: 1rem;
+      top: 50%;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      z-index: 1000;
+    }
+
+    .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--fg);
+      cursor: pointer;
+    }
+
+    footer {
+      padding: 1rem;
+      text-align: center;
+      border-top: 2px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      section {
+        padding: 5rem 1rem;
+      }
+      .overlay {
+        padding: 1.5rem;
+      }
+    }
+  </style>
 </head>
+
 <body data-theme="light">
 
-<div class="theme-circles">
-  <button data-theme="bright" title="Bright Theme"></button>
-  <button data-theme="dark" title="Dark Theme"></button>
-  <button data-theme="auto" title="Auto Theme"></button>
+<div class="theme-toggle">
+  <div class="dot" onclick="setTheme('light')"></div>
+  <div class="dot" onclick="setTheme('dark')"></div>
+  <div class="dot" onclick="setTheme('auto')"></div>
 </div>
 
-<!-- Background layers -->
-<div class="bg-layer" id="bg-mooney" style="background-image: url('images/m20r.jpg'); opacity:1;"></div>"
-<div class="bg-layer" id="bg-c408" style="background-image: url('images/c408.jpg'); opacity:0;"></div>
-<div class="bg-layer" id="bg-cessna172" style="background-image: url('images/cessna172.jpg'); opacity:0;"></div>
-<div class="bg-layer" id="bg-pa28" style="background-image: url('images/pa28.jpg'); opacity:0;"></div>
-<div class="bg-layer" id="bg-cessna152" style="background-image: url('images/cessna152.jpg'); opacity:0;"></div>
-
 <header>
-  <nav aria-label="Main navigation">
-    <a href="#intro">Introduction</a>
-    <a href="#c408">C408</a>
-    <a href="#cessna172">C172</a>
-    <a href="#piper">PA28</a>
-    <a href="#cessna152">C152</a>
-    <a href="#contact">Contact</a>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Engineering</a>
+    <a href="#">Aircraft</a>
+    <a href="#">Contact</a>
   </nav>
 </header>
 
-<main>
-<!-- General Aviation Introduction -->
-<section id="intro">
-<h2>Introduction to General Aviation</h2>
-<p>General Aviation (GA) encompasses all civil aviation activities except scheduled commercial flights. It includes flight training, private flying, air ambulances, aerial surveying, and cargo transport. GA provides the backbone for aviation education, pilot development, and regional connectivity worldwide. Learning GA principles introduces enthusiasts to aircraft systems, flight operations, and the practical applications of aeronautical engineering.</p>
-<p>GA also fosters innovation and hands-on experience. Pilots and engineers work together to optimize performance, safety, and efficiency. Aircraft like the Cessna 152, C172, and Piper PA28 exemplify these principles, combining solid engineering with reliability and ease of use. Understanding GA gives you insight into how aircraft are designed, built, and flown safely every day.</p>
+<!-- M20R TOP SECTION -->
+<section class="bg bg-m20r">
+  <div class="overlay">
+    <h1>General Aviation</h1>
+    <p>
+      General aviation represents the practical side of flight: personal transport,
+      pilot training, engineering innovation, and efficiency-focused aircraft design.
+    </p>
+    <p>
+      Aircraft like the Mooney M20R showcase how speed, aerodynamic refinement,
+      and structural efficiency can be combined in a piston-powered platform.
+    </p>
+  </div>
 </section>
 
-<!-- Cessna 408 Section -->
-<section id="c408">
-<h2>Cessna 408 SkyCourier Assembly</h2>
-<p>The Cessna 408 SkyCourier represents modern aeronautical engineering excellence. Engineers meticulously design every fuselage panel, wing structure, and control system to ensure optimal safety, performance, and reliability. The assembly process blends advanced materials, precision machining, and aerodynamic testing, showcasing how science and craftsmanship come together to produce a functioning aircraft. This stage highlights the core of aeronautical engineering: combining physics, mechanics, and materials science to make flight possible.</p>
-<p>From lift optimization to engine integration, every component of the C408 is tested for durability, performance, and efficiency. This aircraft demonstrates how modern GA designs balance cargo capacity, reliability, and maintainability, giving pilots a versatile and dependable platform.</p>
+<!-- C408 ASSEMBLY -->
+<section class="bg bg-c408">
+  <div class="overlay">
+    <h2>Cessna 408 SkyCourier Assembly</h2>
+    <p>
+      The Cessna 408 SkyCourier is built using a modular assembly philosophy that
+      prioritizes durability, maintainability, and operational efficiency.
+    </p>
+    <p>
+      Engineers focus on robust structures, corrosion resistance, and simplified
+      systems to support high-cycle cargo and regional operations.
+    </p>
+  </div>
 </section>
 
-<!-- Cessna 172 Section -->
-<section id="cessna172">
-<h2>Cessna 172 Skyhawk</h2>
-<p>The Cessna 172 Skyhawk is the most widely used general aviation aircraft worldwide. Known for its reliability and forgiving flight characteristics, it is ideal for flight training and personal use. Its high-wing configuration provides stability and excellent visibility, making it a favorite among students and private pilots.</p>
-<p>Engineering highlights include lightweight structural materials, efficient aerodynamics, and a robust piston engine. The aircraft demonstrates a careful balance between performance, maintenance simplicity, and safety. Pilots learn fundamental flying skills like takeoffs, landings, and navigation in this iconic trainer.</p>
+<!-- C172 -->
+<section class="bg bg-c172">
+  <div class="overlay">
+    <h2>Cessna 172 Skyhawk</h2>
+    <p>
+      The Cessna 172 is the most successful training aircraft in history.
+      Its forgiving aerodynamics and predictable handling make it ideal
+      for student pilots worldwide.
+    </p>
+    <p>
+      From an engineering perspective, it demonstrates the value of stability
+      and simplicity over raw performance.
+    </p>
+  </div>
 </section>
 
-<!-- Piper PA28 Section -->
-<section id="piper">
-<h2>Piper PA-28 Archer</h2>
-<p>The Piper PA-28 Archer is a low-wing aircraft designed for training and personal aviation. Its design emphasizes smooth handling, longer range, and efficient fuel usage. The low-wing structure improves visibility and supports advanced flight maneuvers.</p>
-<p>From an engineering standpoint, the PA-28 focuses on control, stability, and ergonomics. Avionics systems allow pilots to practice both visual and instrument flying, while the airframe balances durability with weight efficiency. This makes it a reliable platform for both novice and experienced pilots.</p>
+<!-- PA28 -->
+<section class="bg bg-pa28">
+  <div class="overlay">
+    <h2>Piper PA-28</h2>
+    <p>
+      The Piper PA-28 series offers a low-wing design with different aerodynamic
+      and handling characteristics compared to high-wing trainers.
+    </p>
+    <p>
+      Engineers balance performance, cost, and pilot ergonomics, resulting in
+      a versatile and widely adopted aircraft family.
+    </p>
+  </div>
 </section>
 
-<!-- Cessna 152 Section -->
-<section id="cessna152">
-<h2>Cessna 152</h2>
-<p>The Cessna 152 is a two-seat trainer that is economical, reliable, and simple to operate. Its lightweight design and predictable flight characteristics make it perfect for student pilots learning the fundamentals of flight.</p>
-<p>Engineering focuses on minimalism without compromising safety. The airframe and piston engine are built to endure repeated training cycles, demonstrating how thoughtful design enables long service life with minimal maintenance. The C152 continues to be a staple in flight schools worldwide.</p>
+<!-- C152 -->
+<section class="bg bg-c152">
+  <div class="overlay">
+    <h2>Cessna 152</h2>
+    <p>
+      The Cessna 152 represents minimalism in aviation engineering.
+      Lightweight construction and modest power result in low operating costs
+      and excellent training performance.
+    </p>
+    <p>
+      It proves that careful engineering choices can outperform complexity
+      in the right mission profile.
+    </p>
+  </div>
 </section>
-
-<!-- Contact Section -->
-<section id="contact">
-<h2>Contact</h2>
-<p>If you want guidance or more info about aviation, aeronautical engineering, or specific aircraft, reach out below:</p>
-<form>
-  <label for="name">Name</label>
-  <input id="name" type="text" required>
-  <label for="email">Email</label>
-  <input id="email" type="email" required>
-  <label for="message">Message</label>
-  <textarea id="message" rows="5" required></textarea>
-  <button type="submit">Send Message</button>
-</form>
-</section>
-
-</main>
 
 <footer>
-<p>© 2026 Discover Aviation — Educational Use</p>
+  <p>© 2026 General Aviation — Educational Use</p>
 </footer>
 
 <script>
-// Theme switching
-const buttons = document.querySelectorAll('.theme-circles button');
-function applyTheme(mode){
-  if(mode==='auto'){
-    const hour = new Date().getUTCHours();
-    document.body.dataset.theme = hour>=17?'dark':'light';
-  } else if(mode==='bright') document.body.dataset.theme='light';
-  else document.body.dataset.theme='dark';
-}
-buttons.forEach(btn => btn.addEventListener('click', ()=>{ 
-  const mode = btn.dataset.theme;
-  localStorage.setItem('themeMode', mode);
-  applyTheme(mode);
-}));
-applyTheme(localStorage.getItem('themeMode') || 'auto');
-
-// Background fade per section
-const layers = [
-  {id:'bg-ga', section:'intro', el:null, sec:null},
-  {id:'bg-c408', section:'c408', el:null, sec:null},
-  {id:'bg-cessna172', section:'cessna172', el:null, sec:null},
-  {id:'bg-piper', section:'piper', el:null, sec:null},
-  {id:'bg-cessna152', section:'cessna152', el:null, sec:null}
-];
-
-window.addEventListener('load', ()=>{
-  layers.forEach(l=>{
-    l.el = document.getElementById(l.id);
-    l.sec = document.getElementById(l.section);
-  });
-
-  const updateOpacity = ()=>{
-    const y = window.scrollY + window.innerHeight/2;
-    layers.forEach(l=>{
-      const top = l.sec.offsetTop;
-      const bottom = top + l.sec.offsetHeight;
-      if(y >= top && y <= bottom){
-        l.el.style.opacity = 1;
-      } else {
-        l.el.style.opacity = 0;
-      }
-    });
-  };
-
-  updateOpacity();
-  window.addEventListener('scroll', updateOpacity);
-});
+  function setTheme(mode) {
+    if (mode === "auto") {
+      const hour = new Date().getUTCHours();
+      document.body.dataset.theme = hour >= 17 ? "dark" : "light";
+    } else {
+      document.body.dataset.theme = mode;
+    }
+  }
 </script>
 
 </body>
