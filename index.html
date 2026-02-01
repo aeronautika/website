@@ -3,128 +3,134 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>General Aviation & Engineering</title>
+  <title>Discover Aviation & Aeronautical Engineering</title>
 
   <style>
     :root {
       --bg: #ffffff;
       --fg: #000000;
       --border: #000000;
+      --card-bg: #f2f2f2;
     }
 
     [data-theme="dark"] {
       --bg: #121212;
       --fg: #ffffff;
       --border: #ffffff;
+      --card-bg: #1e1e1e;
     }
 
     body {
       margin: 0;
       font-family: system-ui, sans-serif;
-      background: var(--bg);
       color: var(--fg);
-      transition: background 0.3s, color 0.3s;
       line-height: 1.6;
-    }
-
-    header {
-      position: fixed;
-      top: 0;
-      width: 100%;
-      padding: 1rem 2rem;
-      z-index: 1000;
-      background: transparent;
-    }
-
-    nav a {
-      margin-right: 1.5rem;
-      text-decoration: underline;
-      color: var(--fg);
-      font-weight: 600;
-    }
-
-    section {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding: 6rem 1.5rem;
-      box-sizing: border-box;
-    }
-
-    .overlay {
-      max-width: 900px;
-      margin: auto;
-      padding: 2rem;
-      background: rgba(255,255,255,0.85);
-      border: 2px solid var(--border);
-    }
-
-    [data-theme="dark"] .overlay {
-      background: rgba(0,0,0,0.65);
-    }
-
-    h1, h2 {
-      margin-top: 0;
-    }
-
-    /* BACKGROUNDS */
-    .bg {
+      background-color: var(--bg);
+      background-image: url("images/m20r.jpg");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
+      transition: background-image 0.8s ease, background-color 0.3s ease;
     }
 
-    .bg-m20r {
-      background-image: url("images/m20r.jpg");
-    }
-
-    .bg-c408 {
-      background-image: url("images/c408.jpg");
-    }
-
-    .bg-c172 {
-      background-image: url("images/cessna172.jpg");
-    }
-
-    .bg-pa28 {
-      background-image: url("images/pa28.jpg");
-    }
-
-    .bg-c152 {
-      background-image: url("images/cessna152.jpg");
-    }
-
-    /* theme dots */
-    .theme-toggle {
-      position: fixed;
-      right: 1rem;
-      top: 50%;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-      z-index: 1000;
-    }
-
-    .dot {
-      width: 12px;
-      height: 12px;
-      border-radius: 50%;
-      border: 2px solid var(--fg);
-      cursor: pointer;
+    header, footer {
+      border-bottom: 2px solid var(--border);
+      padding: 1rem;
+      background: transparent;
     }
 
     footer {
-      padding: 1rem;
-      text-align: center;
       border-top: 2px solid var(--border);
+      border-bottom: none;
+      text-align: center;
     }
 
-    @media (max-width: 768px) {
-      section {
-        padding: 5rem 1rem;
-      }
-      .overlay {
-        padding: 1.5rem;
+    nav {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: var(--fg);
+      text-decoration: underline;
+      font-weight: 600;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: auto;
+      padding: 2rem 1rem;
+      background: rgba(255,255,255,0.85);
+    }
+
+    [data-theme="dark"] main {
+      background: rgba(0,0,0,0.65);
+    }
+
+    section {
+      margin-bottom: 4rem;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.2;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .hero img {
+      width: 100%;
+      border: 2px solid var(--border);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      border: 2px solid var(--border);
+      padding: 1rem;
+      background: var(--card-bg);
+    }
+
+    figure {
+      margin: 0;
+      border: 2px solid var(--border);
+      background: var(--card-bg);
+    }
+
+    figure img {
+      width: 100%;
+      display: block;
+    }
+
+    figcaption {
+      padding: 0.5rem;
+      font-weight: 600;
+    }
+
+    .theme-toggle {
+      position: fixed;
+      top: 1rem;
+      right: 1rem;
+      background: var(--bg);
+      color: var(--fg);
+      border: 2px solid var(--border);
+      padding: 0.4rem 0.8rem;
+      cursor: pointer;
+      z-index: 1000;
+    }
+
+    @media (min-width: 700px) {
+      .hero {
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
       }
     }
   </style>
@@ -132,112 +138,109 @@
 
 <body data-theme="light">
 
-<div class="theme-toggle">
-  <div class="dot" onclick="setTheme('light')"></div>
-  <div class="dot" onclick="setTheme('dark')"></div>
-  <div class="dot" onclick="setTheme('auto')"></div>
-</div>
+<button class="theme-toggle" onclick="toggleTheme()">Switch Theme</button>
 
 <header>
   <nav>
-    <a href="#">Home</a>
-    <a href="#">Engineering</a>
-    <a href="#">Aircraft</a>
-    <a href="#">Contact</a>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#c408">Engineering</a>
+    <a href="#aircraft">Aircraft</a>
   </nav>
 </header>
 
-<!-- M20R TOP SECTION -->
-<section class="bg bg-m20r">
-  <div class="overlay">
-    <h1>General Aviation</h1>
-    <p>
-      General aviation represents the practical side of flight: personal transport,
-      pilot training, engineering innovation, and efficiency-focused aircraft design.
-    </p>
-    <p>
-      Aircraft like the Mooney M20R showcase how speed, aerodynamic refinement,
-      and structural efficiency can be combined in a piston-powered platform.
-    </p>
-  </div>
-</section>
+<main id="home">
 
-<!-- C408 ASSEMBLY -->
-<section class="bg bg-c408">
-  <div class="overlay">
+  <section class="hero">
+    <div>
+      <h1>Discover Aeronautical Engineering & Aviation</h1>
+      <p>
+        Learn how aircraft fly, how they are engineered, and how design choices
+        shape real-world performance in general aviation.
+      </p>
+    </div>
+    <img src="images/cessna172.jpg" alt="Cessna 172">
+  </section>
+
+  <section id="about">
+    <h2>What is Aeronautical Engineering?</h2>
+    <p>
+      Aeronautical engineering covers aircraft design, aerodynamics, propulsion,
+      structures, and avionics.
+    </p>
+  </section>
+
+  <!-- BACKGROUND SWITCH POINT -->
+  <section id="c408">
     <h2>Cessna 408 SkyCourier Assembly</h2>
     <p>
-      The Cessna 408 SkyCourier is built using a modular assembly philosophy that
-      prioritizes durability, maintainability, and operational efficiency.
+      The SkyCourier is assembled using modular, high-durability engineering
+      focused on efficiency, maintainability, and structural strength.
     </p>
-    <p>
-      Engineers focus on robust structures, corrosion resistance, and simplified
-      systems to support high-cycle cargo and regional operations.
-    </p>
-  </div>
-</section>
+  </section>
 
-<!-- C172 -->
-<section class="bg bg-c172">
-  <div class="overlay">
-    <h2>Cessna 172 Skyhawk</h2>
+  <section id="c172">
+    <h2>Cessna 172</h2>
     <p>
-      The Cessna 172 is the most successful training aircraft in history.
-      Its forgiving aerodynamics and predictable handling make it ideal
-      for student pilots worldwide.
+      The most widely used training aircraft ever built, designed for stability
+      and predictable handling.
     </p>
-    <p>
-      From an engineering perspective, it demonstrates the value of stability
-      and simplicity over raw performance.
-    </p>
-  </div>
-</section>
+  </section>
 
-<!-- PA28 -->
-<section class="bg bg-pa28">
-  <div class="overlay">
+  <section id="pa28">
     <h2>Piper PA-28</h2>
     <p>
-      The Piper PA-28 series offers a low-wing design with different aerodynamic
-      and handling characteristics compared to high-wing trainers.
+      A low-wing alternative offering different aerodynamic and handling traits.
     </p>
-    <p>
-      Engineers balance performance, cost, and pilot ergonomics, resulting in
-      a versatile and widely adopted aircraft family.
-    </p>
-  </div>
-</section>
+  </section>
 
-<!-- C152 -->
-<section class="bg bg-c152">
-  <div class="overlay">
+  <section id="c152">
     <h2>Cessna 152</h2>
     <p>
-      The Cessna 152 represents minimalism in aviation engineering.
-      Lightweight construction and modest power result in low operating costs
-      and excellent training performance.
+      Lightweight, efficient, and purpose-built for pilot training.
     </p>
-    <p>
-      It proves that careful engineering choices can outperform complexity
-      in the right mission profile.
-    </p>
-  </div>
-</section>
+  </section>
+
+</main>
 
 <footer>
-  <p>© 2026 General Aviation — Educational Use</p>
+  <p>© 2026 Discover Aviation</p>
 </footer>
 
 <script>
-  function setTheme(mode) {
-    if (mode === "auto") {
-      const hour = new Date().getUTCHours();
-      document.body.dataset.theme = hour >= 17 ? "dark" : "light";
-    } else {
-      document.body.dataset.theme = mode;
-    }
+  function toggleTheme() {
+    document.body.dataset.theme =
+      document.body.dataset.theme === "light" ? "dark" : "light";
   }
+
+  const sections = [
+    { id: "home", img: "images/m20r.jpg" },
+    { id: "c408", img: "images/c408.jpg" },
+    { id: "c172", img: "images/cessna172.jpg" },
+    { id: "pa28", img: "images/pa28.jpg" },
+    { id: "c152", img: "images/cessna152.jpg" }
+  ];
+
+  const observer = new IntersectionObserver(
+    entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const match = sections.find(s => s.id === entry.target.id);
+          if (match) {
+            document.body.style.backgroundImage = `url('${match.img}')`;
+          }
+        }
+      });
+    },
+    { threshold: 0.5 }
+  );
+
+  sections.forEach(s => {
+    const el = document.getElementById(s.id);
+    if (el) observer.observe(el);
+  });
 </script>
 
 </body>
 </html>
+
